@@ -35,8 +35,8 @@ app.post('/addResponse', addResponse);
 
 function addResponse(req, res){
   newEntry = {
-    temperature: req.body.temperature;
-    date: req.body.date;
-    userRes: rea.body.userRes;
+    temperature: req.body.temperature,
+    date: req.body.date,
+    userRes: rea.body.userRes
   }
 }
