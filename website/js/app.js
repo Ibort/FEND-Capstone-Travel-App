@@ -2,7 +2,6 @@
 const api = '&units=metric&appid=24cf83b2850575c3cb8146c500e11ddf';
 const baseUrl = 'http://api.openweathermap.org/data/2.5/weather?q=';
 let city = '';
-let entId = 1;
 const iconFrontUrl = 'http://openweathermap.org/img/wn/';
 const iconEndUrl = {
   200: '11d@2x.png', 201: '11d@2x.png', 202: '11d@2x.png', 210: '11d@2x.png', 211: '11d@2x.png', 212: '11d@2x.png', 221: '11d@2x.png', 231: '11d@2x.png', 230: '11d@2x.png', 232: '11d@2x.png',
@@ -14,7 +13,8 @@ const iconEndUrl = {
 }
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', generate);
-/* Function called by event listener */
+document.getElementById('history__entries__table').addEventListener('click', loadEntry)
+/* Function called by event listener generate*/
 function generate(e){
   const loc = document.getElementById('loc').value;
   const feeling = document.getElementById('feelings').value;
@@ -23,15 +23,19 @@ function generate(e){
   .then(function(data) {
     console.log(data);
     postData('/addResponse', {
-              entId: entId,
               city: data.name,
               temp: data.main,
               weather: data.weather,
               feelings: feeling,
               date: new Date().toGMTString()
             })
-    entId++;
   })
+}
+
+// Load history function
+function loadEntry(e){
+  let target = e.target.closest('tr').firstChild.innerText;
+  updateUI(target-1);
 }
 
 /* Function to GET Web API Data*/
@@ -65,11 +69,11 @@ async function postData(url = '', data = {}){
 }
 
 /* Function to GET Project Data */
-async function updateUI(){
+async function updateUI(entryNum = 0){
   const res = await fetch('all')
   try{
     const allData = await res.json();
-    const iconId = allData[0].weather[0].id;
+    const iconId = allData[entryNum].weather[0].id;
 
     // Build weather entry
     const icon = await fetch(iconFrontUrl+iconEndUrl[iconId])
@@ -79,12 +83,12 @@ async function updateUI(){
       console.log(error);
     }
     console.log(allData);
-    document.getElementById('conent__name').innerHTML = allData[0].city;
-    document.getElementById('weather__status').innerHTML = allData[0].weather[0].main;
-    document.getElementById('weather__morestatus').innerHTML = allData[0].weather[0].description;
-    document.getElementById('weather__temp').innerHTML = Math.round(allData[0].temp.temp)+'°C';
-    document.getElementById('content__feelings').innerHTML = allData[0].feelings;
-    document.getElementById('content__date').innerHTML = allData[0].date;
+    document.getElementById('conent__name').innerHTML = allData[entryNum].city;
+    document.getElementById('weather__status').innerHTML = allData[entryNum].weather[0].main;
+    document.getElementById('weather__morestatus').innerHTML = allData[entryNum].weather[0].description;
+    document.getElementById('weather__temp').innerHTML = Math.round(allData[entryNum].temp.temp)+'°C';
+    document.getElementById('content__feelings').innerHTML = allData[entryNum].feelings;
+    document.getElementById('content__date').innerHTML = allData[entryNum].date;
 
     // Build journal history
     let history = document.getElementById('history__entries__table');
