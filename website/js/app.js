@@ -17,7 +17,7 @@ function generate(e){
               temp: data.main,
               weather: data.weather,
               feelings: feeling,
-              date: new Date().toDateString()
+              date: new Date().toGMTString()
             })
   })
 }

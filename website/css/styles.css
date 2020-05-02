@@ -11,7 +11,7 @@ body{
 
 body main {
   width: 100%;
-  max-width: 80vw;
+  max-width: 60vw;
 }
 
 body main section{
@@ -26,6 +26,12 @@ main h1 {
   background: #30475e;
 }
 
+.cont__all{
+  border: 2px solid #f2a365;
+  width: 100%;
+  max-width: 60vw;
+}
+
 .main__hd{
   display: flex;
   align-items: center;
@@ -33,7 +39,7 @@ main h1 {
   background: #30475e;
   border-bottom: 5px solid #f2a365;
   width: 100%;
-  max-width: 80vw;
+  max-width: 60vw;
 }
 
 .journal__entries{
@@ -75,7 +81,6 @@ main h1 {
 .weather__zip input{
   font-size: 1em;
   text-align: center;
-  width: 80vw;
 }
 
 .feel{
@@ -89,7 +94,7 @@ main h1 {
 .myInput{
   margin-top: 1em;
   margin-bottom: 2em;;
-  width: 80vw;
+  width: 80%;
   font-size: 1em;
 }
 
@@ -103,7 +108,7 @@ body footer{
   position: relative;
   bottom: 0;
   width: 100%;
-  max-width: 80vw;
+  max-width: 60vw;
 }
 
 @media(max-width:1024px) {
@@ -114,6 +119,9 @@ body footer{
     max-width: 100vw;
   }
   body footer{
+    max-width: 100vw;
+  }
+  .cont__all{
     max-width: 100vw;
   }
 }
