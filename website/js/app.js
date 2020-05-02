@@ -2,6 +2,7 @@
 const api = '&units=metric&appid=24cf83b2850575c3cb8146c500e11ddf';
 const baseUrl = 'http://api.openweathermap.org/data/2.5/weather?q=';
 let city = '';
+let entId = 1;
 const iconFrontUrl = 'http://openweathermap.org/img/wn/';
 const iconEndUrl = {
   200: '11d@2x.png', 201: '11d@2x.png', 202: '11d@2x.png', 210: '11d@2x.png', 211: '11d@2x.png', 212: '11d@2x.png', 221: '11d@2x.png', 231: '11d@2x.png', 230: '11d@2x.png', 232: '11d@2x.png',
@@ -22,12 +23,14 @@ function generate(e){
   .then(function(data) {
     console.log(data);
     postData('/addResponse', {
+              entId: entId,
               city: data.name,
               temp: data.main,
               weather: data.weather,
               feelings: feeling,
-              date: new Date().toDateString()
+              date: new Date().toGMTString()
             })
+    entId++;
   })
 }
 
@@ -67,9 +70,11 @@ async function updateUI(){
   try{
     const allData = await res.json();
     const iconId = allData[0].weather[0].id;
+
+    // Build weather entry
     const icon = await fetch(iconFrontUrl+iconEndUrl[iconId])
     try{
-      document.getElementById('weather__icon').innerHTML = `<img src="${icon.url}" alt="Weather icon" width="200px" height="200px">`;
+      document.getElementById('weather__icon').innerHTML = `<img src="${icon.url}" alt="Weather icon" width="400px" height="400px">`;
     } catch(error){
       console.log(error);
     }
@@ -80,6 +85,23 @@ async function updateUI(){
     document.getElementById('weather__temp').innerHTML = Math.round(allData[0].temp.temp)+'°C';
     document.getElementById('content__feelings').innerHTML = allData[0].feelings;
     document.getElementById('content__date').innerHTML = allData[0].date;
+
+    // Build journal history
+    let history = document.getElementById('history__entries__table');
+    let historyEnt = [];
+    history.innerHTML = null;
+    for (entry of allData){
+      historyEnt.push([entry.entId, entry.city, entry.feelings.slice(0, 20)+'...', entry.date]);
+    }
+    for(i of historyEnt){
+      let row = document.createElement('tr');
+      for(j of i){
+        let cell = document.createElement('td');
+        cell.innerHTML = j;
+        row.appendChild(cell)
+      }
+      history.appendChild(row);
+    }
   } catch(error){
     console.log(error);
   }

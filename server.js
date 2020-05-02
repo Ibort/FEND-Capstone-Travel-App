@@ -35,6 +35,7 @@ app.post('/addResponse', addResponse);
 
 function addResponse(req, res){
   newEntry = {
+    entId: req.body.entId,
     city: req.body.city,
     temp: req.body.temp,
     weather: req.body.weather,

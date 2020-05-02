@@ -51,11 +51,18 @@ main h1 {
   flex-flow: column;
 }
 
-.content__weather{
+.journal__content p{
+  text-align: justify;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+#conent__name{
+  font-size: 4em;
 }
 
 #weather__temp{
-  font-size: 2em;
+  font-size: 4em;
 }
 
 #content__date{
@@ -72,9 +79,18 @@ main h1 {
   border-bottom: 5px solid #f2a365;
 }
 
-.journal__history span{
+#history__entries{
+  font-size: 1.1em;
   width: 100%;
-  border-top: 2px dotted #f2a365;
+}
+
+#history__entries table{
+  width: 100%;
+  border-bottom: 4px dotted #f2a365;
+}
+
+#history__entries td {
+  border-top: 4px dotted #f2a365;
 }
 
 .journal__generate{
