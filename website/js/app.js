@@ -16,9 +16,9 @@ document.getElementById('generate').addEventListener('click', generate);
 document.getElementById('history__entries__table').addEventListener('click', loadEntry)
 /* Function called by event listener generate*/
 function generate(e){
-  const loc = document.getElementById('loc').value;
-  const feeling = document.getElementById('feelings').value;
-  const url = baseUrl+loc+api;
+  const loc = document.getElementById('loc');
+  const feeling = document.getElementById('feelings');
+  const url = baseUrl+loc.value+api;
   getWeather(url)
   .then(function(data) {
     console.log(data);
@@ -26,9 +26,12 @@ function generate(e){
               city: data.name,
               temp: data.main,
               weather: data.weather,
-              feelings: feeling,
+              feelings: feeling.value,
               date: new Date().toGMTString()
             })
+    loc.value = null;
+    feeling.value = null;
+    updateUI();
   })
 }
 
@@ -106,6 +109,7 @@ async function updateUI(entryNum = 0){
       }
       history.appendChild(row);
     }
+    history.children[entryNum].style.background = '#30475e';
   } catch(error){
     console.log(error);
   }
