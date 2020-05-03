@@ -21,16 +21,23 @@ function generate(e){
   const url = baseUrl+loc.value+api;
   getWeather(url)
   .then(function(data) {
-    postData('/addResponse', {
-              city: data.name,
-              temp: data.main,
-              weather: data.weather,
-              feelings: feeling.value,
-              date: new Date().toGMTString()
-            })
-    loc.value = null;
-    feeling.value = null;
-    updateUI();
+    console.log(data.cod);
+    if(data.cod === 200){
+      postData('/addResponse', {
+                city: data.name,
+                temp: data.main,
+                weather: data.weather,
+                feelings: feeling.value,
+                date: new Date().toGMTString()
+              })
+      loc.value = null;
+      feeling.value = null;
+      updateUI();
+    }
+    else{
+      loc.classList.add('weather__zip-error');
+      setTimeout(()=> loc.classList.remove('weather__zip-error'), 300);
+    }
   })
 }
 
@@ -116,6 +123,9 @@ async function updateUI(entryNum = 0){
     history.children[entryNum].style.background = '#30475e';
   } catch(error){
     console.log('Update ui error:'+error);
+    if(error instanceof TypeError){
+      alert('Please generate the first entry')
+    }
   }
 }
 
