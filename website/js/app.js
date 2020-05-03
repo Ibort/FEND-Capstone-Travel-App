@@ -21,7 +21,6 @@ function generate(e){
   const url = baseUrl+loc.value+api;
   getWeather(url)
   .then(function(data) {
-    console.log(data.cod);
     if(data.cod === 200){
       postData('/addResponse', {
                 city: data.name,
@@ -77,10 +76,13 @@ async function postData(url = '', data = {}){
 }
 
 /* Function to GET Project Data */
-async function updateUI(entryNum = 0){
+async function updateUI(entryNum){
   const res = await fetch('all')
   try{
     const allData = await res.json();
+    if(entryNum == null){
+      entryNum = allData.length-1;
+    }
     const iconId = allData[entryNum].weather[0].id;
 
     // Build weather entry
