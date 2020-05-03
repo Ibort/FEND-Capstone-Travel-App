@@ -48,7 +48,7 @@ async function getWeather(url){
     const data = await res.json();
     return data;
   } catch(error) {
-    console.log(error);
+    console.log('Get weather Error:'+error);
   }
 }
 /* Function to POST data */
@@ -67,7 +67,7 @@ async function postData(url = '', data = {}){
         console.log(newData);
         return newData;
       } catch(error){
-        console.log(error);
+        console.log('Post data error:'+error);
       }
 }
 
@@ -80,11 +80,16 @@ async function updateUI(entryNum = 0){
 
     // Build weather entry
     const icon = await fetch(iconFrontUrl+iconEndUrl[iconId])
-    try{
-      document.getElementById('weather__icon').innerHTML = `<img src="${icon.url}" alt="Weather icon" width="400px" height="400px">`;
-    } catch(error){
-      console.log(error);
-    }
+    .then(icon => {
+      if(icon.ok){
+        document.getElementById('weather__icon').innerHTML = `<img src="${icon.url}" alt="Weather icon" width="400px" height="400px">`;
+      }
+      else {
+        document.getElementById('weather__icon').innerHTML = `<img src="/assets/def_weather.png" alt="Weather icon" width="400px" height="400px">`;
+      }
+    })
+    .catch(error => console.log('Icon error'+error));
+
     console.log(allData);
     document.getElementById('conent__name').innerHTML = allData[entryNum].city;
     document.getElementById('weather__status').innerHTML = allData[entryNum].weather[0].main;
@@ -111,6 +116,6 @@ async function updateUI(entryNum = 0){
     }
     history.children[entryNum].style.background = '#30475e';
   } catch(error){
-    console.log(error);
+    console.log('Update ui error:'+error);
   }
 }
