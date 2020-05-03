@@ -21,7 +21,6 @@ function generate(e){
   const url = baseUrl+loc.value+api;
   getWeather(url)
   .then(function(data) {
-    console.log(data);
     postData('/addResponse', {
               city: data.name,
               temp: data.main,
@@ -64,7 +63,6 @@ async function postData(url = '', data = {}){
 
       try {
         const newData = await response.json();
-        console.log(newData);
         return newData;
       } catch(error){
         console.log('Post data error:'+error);
@@ -90,7 +88,6 @@ async function updateUI(entryNum = 0){
     })
     .catch(error => console.log('Icon error'+error));
 
-    console.log(allData);
     document.getElementById('conent__name').innerHTML = allData[entryNum].city;
     document.getElementById('weather__status').innerHTML = allData[entryNum].weather[0].main;
     document.getElementById('weather__morestatus').innerHTML = allData[entryNum].weather[0].description;
@@ -101,6 +98,7 @@ async function updateUI(entryNum = 0){
     // Build journal history
     let history = document.getElementById('history__entries__table');
     let historyEnt = [];
+    const historyItems = document.createDocumentFragment();
     history.innerHTML = null;
     for (entry of allData){
       historyEnt.push([entry.entId, entry.city, entry.feelings.slice(0, 20)+'...', entry.date]);
@@ -112,10 +110,13 @@ async function updateUI(entryNum = 0){
         cell.innerHTML = j;
         row.appendChild(cell)
       }
-      history.appendChild(row);
+      historyItems.appendChild(row);
     }
+    history.appendChild(historyItems);
     history.children[entryNum].style.background = '#30475e';
   } catch(error){
     console.log('Update ui error:'+error);
   }
 }
+
+updateUI();

@@ -46,6 +46,5 @@ function addResponse(req, res){
 
   projectData.push(newEntry);
   res.send(projectData);
-  console.log(projectData);
   entId++;
 }
