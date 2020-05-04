@@ -34,8 +34,8 @@ function generate(e){
       updateUI();
     }
     else{
-      loc.classList.add('weather__zip-error');
-      setTimeout(()=> loc.classList.remove('weather__zip-error'), 300);
+      loc.classList.add('weather__loc-error');
+      setTimeout(()=> loc.classList.remove('weather__loc-error'), 300);
     }
   })
 }
@@ -89,7 +89,7 @@ async function updateUI(entryNum){
     const icon = await fetch(iconFrontUrl+iconEndUrl[iconId])
     .then(icon => {
       if(icon.ok){
-        document.getElementById('weather__icon').innerHTML = `<img src="${icon.url}" alt="Weather icon" width="400px" height="400px">`;
+        document.getElementById('weather__icon').innerHTML = `<img src="${icon.url}" alt="Weather icon">`;
       }
       else {
         document.getElementById('weather__icon').innerHTML = `<img src="/assets/def_weather.png" alt="Weather icon" width="400px" height="400px">`;
