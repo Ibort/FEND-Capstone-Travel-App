@@ -36,6 +36,7 @@ function generate(e){
       // call html update function
       updateUI();
     }
+    // wrong location error animation
     else{
       loc.classList.add('weather__loc-error');
       setTimeout(()=> loc.classList.remove('weather__loc-error'), 300);
