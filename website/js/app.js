@@ -1,4 +1,4 @@
-// Personal API Key for OpenWeatherMap API
+// Personal API Key for OpenWeatherMap API and icon url code
 const api = '&units=metric&appid=24cf83b2850575c3cb8146c500e11ddf';
 const baseUrl = 'http://api.openweathermap.org/data/2.5/weather?q=';
 let city = '';
@@ -40,7 +40,7 @@ function generate(e){
   })
 }
 
-// Load history function
+// Function called by event listerner loadEntry
 function loadEntry(e){
   let target = e.target.closest('tr').firstChild.innerText;
   updateUI(target-1);
@@ -75,7 +75,7 @@ async function postData(url = '', data = {}){
       }
 }
 
-/* Function to GET Project Data */
+/* Function to GET and update Project Data */
 async function updateUI(entryNum){
   const res = await fetch('all')
   try{
@@ -92,7 +92,7 @@ async function updateUI(entryNum){
         document.getElementById('weather__icon').innerHTML = `<img src="${icon.url}" alt="Weather icon">`;
       }
       else {
-        document.getElementById('weather__icon').innerHTML = `<img src="/assets/def_weather.png" alt="Weather icon" width="400px" height="400px">`;
+        document.getElementById('weather__icon').innerHTML = `<img src="/assets/def_weather.png" alt="Weather icon">`;
       }
     })
     .catch(error => console.log('Icon error'+error));
