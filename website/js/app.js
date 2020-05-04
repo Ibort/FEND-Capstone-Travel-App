@@ -21,6 +21,7 @@ function generate(e){
   const url = baseUrl+loc.value+api;
   getWeather(url)
   .then(function(data) {
+    // check if location repsonse is correct and send data to the server
     if(data.cod === 200){
       postData('/addResponse', {
                 city: data.name,
@@ -29,8 +30,10 @@ function generate(e){
                 feelings: feeling.value,
                 date: new Date().toGMTString()
               })
+      // clear the generate input filed out
       loc.value = null;
       feeling.value = null;
+      // call html update function
       updateUI();
     }
     else{
@@ -80,23 +83,27 @@ async function updateUI(entryNum){
   const res = await fetch('all')
   try{
     const allData = await res.json();
+    // when the entryNum is null then load the last entry
     if(entryNum == null){
       entryNum = allData.length-1;
     }
     const iconId = allData[entryNum].weather[0].id;
 
-    // Build weather entry
+    // Build weather entry and load into html
+    // Get icon from openweather
     const icon = await fetch(iconFrontUrl+iconEndUrl[iconId])
     .then(icon => {
+      // load returned icon
       if(icon.ok){
         document.getElementById('weather__icon').innerHTML = `<img src="${icon.url}" alt="Weather icon">`;
       }
+      // if not then load default icon from assets
       else {
         document.getElementById('weather__icon').innerHTML = `<img src="/assets/def_weather.png" alt="Weather icon">`;
       }
     })
     .catch(error => console.log('Icon error'+error));
-
+    // load data to html elements
     document.getElementById('conent__name').innerHTML = allData[entryNum].city;
     document.getElementById('weather__status').innerHTML = allData[entryNum].weather[0].main;
     document.getElementById('weather__morestatus').innerHTML = allData[entryNum].weather[0].description;
@@ -108,12 +115,14 @@ async function updateUI(entryNum){
     buildHistory(allData, entryNum);
   } catch(error){
     console.log('Update ui error:'+error);
+    // When the data is empty error message
     if(error instanceof TypeError){
       alert('Please generate the first entry')
     }
   }
 }
 
+// Build history content function
 function buildHistory(data, num){
   const historyCont = document.getElementById('history__entries');
   let history = document.getElementById('history__entries__table');
@@ -137,4 +146,5 @@ function buildHistory(data, num){
   history.children[num].style.background = '#30475e';
 }
 
+// update html on load
 updateUI();
