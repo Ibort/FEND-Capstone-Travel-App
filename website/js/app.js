@@ -105,32 +105,36 @@ async function updateUI(entryNum){
     document.getElementById('content__date').innerHTML = allData[entryNum].date;
 
     // Build journal history
-    const historyCont = document.getElementById('history__entries');
-    let history = document.getElementById('history__entries__table');
-    let historyEnt = [];
-    const historyItems = document.createDocumentFragment();
-    history.innerHTML = null;
-    for (entry of allData){
-      historyEnt.push([entry.entId, entry.city, entry.feelings.slice(0, 20)+'...', entry.date]);
-    }
-    for(i of historyEnt){
-      let row = document.createElement('tr');
-      for(j of i){
-        let cell = document.createElement('td');
-        cell.innerHTML = j;
-        row.appendChild(cell)
-      }
-      historyItems.appendChild(row);
-    }
-    history.appendChild(historyItems);
-    historyCont.scrollTop = historyCont.scrollHeight;
-    history.children[entryNum].style.background = '#30475e';
+    buildHistory(allData, entryNum);
   } catch(error){
     console.log('Update ui error:'+error);
     if(error instanceof TypeError){
       alert('Please generate the first entry')
     }
   }
+}
+
+function buildHistory(data, num){
+  const historyCont = document.getElementById('history__entries');
+  let history = document.getElementById('history__entries__table');
+  let historyEnt = [];
+  const historyItems = document.createDocumentFragment();
+  history.innerHTML = null;
+  for (entry of data){
+    historyEnt.push([entry.entId, entry.city, entry.feelings.slice(0, 20)+'...', entry.date]);
+  }
+  for(i of historyEnt){
+    let row = document.createElement('tr');
+    for(j of i){
+      let cell = document.createElement('td');
+      cell.innerHTML = j;
+      row.appendChild(cell)
+    }
+    historyItems.appendChild(row);
+  }
+  history.appendChild(historyItems);
+  historyCont.scrollTop = (historyCont.scrollHeight/history.children.length)*num+1;
+  history.children[num].style.background = '#30475e';
 }
 
 updateUI();
