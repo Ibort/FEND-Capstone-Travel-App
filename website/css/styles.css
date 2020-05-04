@@ -93,22 +93,20 @@ body{
 #history__entries{
   font-size: 1.1em;
   width: 100%;
+  max-height: 40vh;
   overflow-y: auto;
 }
 
 #history__entries table{
   width: 100%;
-  border-bottom: 2px dotted #f2a365;
+  border-collapse: collapse;
   cursor: pointer;
 }
 
 #history__entries td {
-  border-top: 2px dotted #f2a365;
+  border: 2px dotted #f2a365;
 }
 
-#history__entries td:nth-child(-n+3){
-  border-right: 2px solid #f2a365;
-}
 
 /* Journaul content generate */
 

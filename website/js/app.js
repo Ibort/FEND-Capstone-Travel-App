@@ -105,6 +105,7 @@ async function updateUI(entryNum){
     document.getElementById('content__date').innerHTML = allData[entryNum].date;
 
     // Build journal history
+    const historyCont = document.getElementById('history__entries');
     let history = document.getElementById('history__entries__table');
     let historyEnt = [];
     const historyItems = document.createDocumentFragment();
@@ -122,6 +123,7 @@ async function updateUI(entryNum){
       historyItems.appendChild(row);
     }
     history.appendChild(historyItems);
+    historyCont.scrollTop = historyCont.scrollHeight;
     history.children[entryNum].style.background = '#30475e';
   } catch(error){
     console.log('Update ui error:'+error);
