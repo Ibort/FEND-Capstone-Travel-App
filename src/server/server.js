@@ -15,9 +15,9 @@ app.use(bodyParser.json());
 const cors = require('cors');
 app.use(cors());
 // Initialize the main project folder
-app.use(express.static('website'));
+app.use(express.static('dist'));
 
-const port = 8080;
+const port = 8082;
 // Spin up the server
 const server = app.listen(port, listening)
 // Callback to debug
@@ -48,3 +48,7 @@ function addResponse(req, res){
   res.send(projectData);
   entId++;
 }
+
+app.get('/test', function (req, res) {
+    res.send('mockAPIResponse');
+})

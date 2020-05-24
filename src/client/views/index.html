@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Weather Journal App</title>
+  </head>
+  <body>
+  <div class="cont__all">
+    <header class="main__hd">
+      <h1>Weather Journal App</h1>
+    </header>
+    <main>
+      <section class="journal__entries">
+        <h1>Weather Journal</h1>
+        <div class="journal__content">
+          <header id="conent__name">Search for a place.</header>
+          <main>
+            <div id="weather__status"></div>
+            <div id="weather__icon"></div>
+            <div id="weather__morestatus"></div>
+            <div id='weather__temp'></div>
+            <div><h2>My feelings entry:</h2></div>
+            <div><p id="content__feelings"></p></div>
+          </main>
+          <footer id="content__date"></footer>
+        </div>
+      </section>
+      <section class="journal__history">
+        <h1>Journal History</h1>
+        <div id="history__entries">
+          <table>
+            <tbody id="history__entries__table"></tbody>
+          </table>
+        </div>
+      </section>
+      <section class="journal__generate">
+        <h1>Generate Journal</h1>
+        <div class="weather__loc">
+          <label for="loc">Location Name</label>
+          <input type="text" id="loc" placeholder="enter city name here">
+        </div>
+        <div class ="feel">
+          <label for="feelings">How are you feeling today?</label>
+          <textarea class="myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>
+          <button id="generate" type="submit"> Generate </button>
+        </div>
+      </section>
+    </main>
+    <footer class="main__footer">Weather Journal</footer>
+  </div>
+  <script>
+      // Check that service workers are supported
+      if ('serviceWorker' in navigator) {
+          // Use the window load event to keep the page load performant
+          window.addEventListener('load', () => {
+              navigator.serviceWorker.register('/service-worker.js');
+          });
+      }
+  </script>
+  </body>
+</html>
