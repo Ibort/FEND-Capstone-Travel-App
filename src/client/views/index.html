@@ -2,53 +2,56 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Weather Journal App</title>
+    <title>Travel Planner App</title>
   </head>
   <body>
-  <div class="cont__all">
     <header class="main__hd">
-      <h1>Weather Journal App</h1>
+      <h1>Travel Planner</h1>
     </header>
-    <main>
-      <section class="journal__entries">
-        <h1>Weather Journal</h1>
-        <div class="journal__content">
-          <header id="conent__name">Search for a place.</header>
-          <main>
-            <div id="weather__status"></div>
-            <div id="weather__icon"></div>
-            <div id="weather__morestatus"></div>
-            <div id='weather__temp'></div>
-            <div><h2>My feelings entry:</h2></div>
-            <div><p id="content__feelings"></p></div>
-          </main>
-          <footer id="content__date"></footer>
-        </div>
-      </section>
-      <section class="journal__history">
-        <h1>Journal History</h1>
-        <div id="history__entries">
-          <table>
-            <tbody id="history__entries__table"></tbody>
-          </table>
-        </div>
-      </section>
-      <section class="journal__generate">
-        <h1>Generate Journal</h1>
-        <div class="weather__loc">
-          <label for="loc">Location Name</label>
-          <input type="text" id="loc" placeholder="enter city name here">
-        </div>
-        <div class ="feel">
-          <label for="feelings">How are you feeling today?</label>
-          <textarea class="myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>
-          <button id="generate" type="submit"> Generate </button>
-        </div>
-      </section>
+    <main class="main__cont">
+      <header class="cont__hd">
+        <span>My trips:</span>
+        <span id="addTrip">+ add trip</span>
+      </header>
+      <main class="travels__cont">
+        <section class="trip__template">
+          <section class="entry__left">
+            <img src="https://placedog.net/500" alt="HTML Dog">
+            <span>+ add lodging info</span>
+            <span>+ add packing list</span>
+            <span>+ add notes</span>
+          </section>
+          <section class="entry__right">
+            <div class="dest__time">
+              <span>
+                <h1>My trip to: Paris, France</h1>
+                <h1>Departing: 12.02.2020</h1>
+              </span>
+            </div>
+            <div class="add__rem__button">
+              <span>save trip</span>
+              <span>remove trip</span>
+            </div>
+            <div class="distance">
+              <span>Paris, France is <span>220</span> days away.</span>
+            </div>
+            <div class="weather">
+              <h1>Typical weather for then is:</h1>
+              <img src="src/client/media/def_weather.png" alt="weather icon">
+              <div class="weather__text">
+                <span>High: 35C°, Low: 12C°</span>
+                <span>Mostly cloudy throught the day.</span>
+              </div>
+            </div>
+          </section>
+        </section>
+      </main>
     </main>
-    <footer class="main__footer">Weather Journal</footer>
+    <footer>
+
+    </footer>
   </div>
-  <script>
+  <!-- <script>
       // Check that service workers are supported
       if ('serviceWorker' in navigator) {
           // Use the window load event to keep the page load performant
@@ -56,6 +59,6 @@
               navigator.serviceWorker.register('/service-worker.js');
           });
       }
-  </script>
+  </script> -->
   </body>
 </html>
