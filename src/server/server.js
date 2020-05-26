@@ -17,7 +17,7 @@ app.use(cors());
 // Initialize the main project folder
 app.use(express.static('dist'));
 
-const port = 8082;
+const port = 8080;
 // Spin up the server
 const server = app.listen(port, listening)
 // Callback to debug
@@ -37,15 +37,13 @@ app.post('/addResponse', addResponse);
 function addResponse(req, res){
   newEntry = {
     entId: entId,
-    city: req.body.city,
-    temp: req.body.temp,
-    weather: req.body.weather,
-    feelings: req.body.feelings,
+    destination: req.body.dest,
     date: req.body.date
   }
 
   projectData.push(newEntry);
-  res.send(projectData);
+  // res.send(projectData);
+  console.log(projectData);
   entId++;
 }
 

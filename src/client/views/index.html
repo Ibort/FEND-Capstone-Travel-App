@@ -13,39 +13,19 @@
         <span>My trips:</span>
         <span id="addTrip">+ add trip</span>
       </header>
-      <main class="travels__cont">
-        <section class="trip__template">
-          <section class="entry__left">
-            <img src="https://placedog.net/500" alt="HTML Dog">
-            <span>+ add lodging info</span>
-            <span>+ add packing list</span>
-            <span>+ add notes</span>
-          </section>
-          <section class="entry__right">
-            <div class="dest__time">
-              <span>
-                <h1>My trip to: Paris, France</h1>
-                <h1>Departing: 12.02.2020</h1>
-              </span>
-            </div>
-            <div class="add__rem__button">
-              <span>save trip</span>
-              <span>remove trip</span>
-            </div>
-            <div class="distance">
-              <span>Paris, France is <span>220</span> days away.</span>
-            </div>
-            <div class="weather">
-              <h1>Typical weather for then is:</h1>
-              <img src="src/client/media/def_weather.png" alt="weather icon">
-              <div class="weather__text">
-                <span>High: 35C°, Low: 12C°</span>
-                <span>Mostly cloudy throught the day.</span>
-              </div>
-            </div>
-          </section>
-        </section>
-      </main>
+      <section class="travels__cont">
+      </section>
+      <section class="add__travel">
+        <div class="travel__text">
+          <h1>My trip to:</h1>
+          <input id="tripLoc" type="text" name="Location" placeholder="Enter Location" required>
+        </div>
+        <div class="travel__text">
+          <h1>Departing:</h1>
+          <input id="depDate" type="date" name="Departure date" placeholder="Choose a date" required>
+        </div>
+        <span id="saveTrip">Save Trip</span>
+      </section>
     </main>
     <footer>
 

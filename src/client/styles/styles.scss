@@ -1,12 +1,12 @@
 $bg_color: #222831;
 $hd_color: #30475e;
 $border_color: #f2a365;
-
 $btn_border_size : 5px;
+$font_color: #ececec;
 
 body {
   font-size: 2.5em;
-  color: #ececec;
+  color: $font_color;
   background: $bg-color;
 
 }
@@ -49,7 +49,7 @@ body {
   flex-flow: column;
   align-items: flex-start;
 
-  span{
+  .add__form__btn{
     width: 400px;
     font-weight: bold;
     font-size: 1.2em;
@@ -59,6 +59,27 @@ body {
     border: $btn_border_size solid $border_color;
     border-radius: 30px;
     background: $bg_color;
+  }
+
+  .add__from__text{
+    display: flex;
+    max-width: 800px;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
+    align-self: center;
+    margin-top: 1em;
+    border: $btn_border_size solid $border_color;
+    background: $bg_color;
+
+    input{
+      font-size: 1em;
+      width: 500px
+    }
+    .save__Btn {
+      border: 2px solid $border_color;
+      padding: 10px 40px;
+    }
   }
 
   img{
@@ -144,5 +165,51 @@ body {
     span{
       padding: 0 1em 0 1em;
     }
+  }
+}
+
+.add__travel{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 1em 0 1em 0;
+  width: 100%;
+  background: $hd-color;
+  .travel__text{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    h1{
+      width: 285px;
+      margin: 0;
+    }
+    label{
+      width: 262px;
+    }
+    input{
+      font-size: 1.3em;
+      margin-left: 10px;
+      color: $font_color;
+      background: $bg-color;
+      border: 0;
+      width: 400px;
+    }
+    input:focus{
+      outline: none;
+    }
+    #saveTrip{
+      height: 2em;
+      margin-top: 1em;
+    }
+  }
+  span{
+    margin-top: 1em;
+    width: 250px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 20px 40px 20px 40px;
+    border: $btn_border_size solid $border_color;
+    background: $bg_color;
   }
 }

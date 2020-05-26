@@ -1,6 +1,10 @@
-// import { generate, loadEntry } from './js/app'
+// import { addForm } from './js/addTextFrom'
+import { addNewTrip } from './js/addTrip'
 
 import './styles/styles.scss';
 
-// document.getElementById('generate').addEventListener('click', generate);
+document.getElementById('saveTrip').addEventListener('click', addNewTrip);
+// document.getElementById('addLodging').addEventListener('click', addForm);
+// document.getElementById('addPacking').addEventListener('click', addForm);
+// document.getElementById('addNotes').addEventListener('click', addForm);
 // document.getElementById('history__entries__table').addEventListener('click', loadEntry)
