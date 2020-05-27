@@ -4,8 +4,9 @@ function addNewTrip(){
   if(isEmpty(loc.value) === false && isEmpty(date.value) === false){
     postData('/addResponse', {
                                 dest: loc.value,
-                                date: date.value
-                              });
+                                date: new Date(date.value)
+                              })
+    .then(res => console.log(res))
   }
   else {
     alert('Please fill out both location and date field')
