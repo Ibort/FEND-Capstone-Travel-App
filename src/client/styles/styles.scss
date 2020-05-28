@@ -179,20 +179,19 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    width: 80%;
     h1{
-      width: 285px;
       margin: 0;
-    }
-    label{
-      width: 262px;
+      min-width: 30%;
     }
     input{
+      min-width: 40%;
+      max-width: 50%;
       font-size: 1.3em;
       margin-left: 10px;
       color: $font_color;
       background: $bg-color;
       border: 0;
-      width: 400px;
     }
     input:focus{
       outline: none;

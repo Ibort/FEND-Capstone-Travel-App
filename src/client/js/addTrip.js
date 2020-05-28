@@ -1,15 +1,20 @@
 function addNewTrip(){
-  const loc = document.getElementById('tripLoc');
-  const date = document.getElementById('depDate');
-  if(isEmpty(loc.value) === false && isEmpty(date.value) === false){
+  const loc = document.getElementById('tripLoc').value;
+  const date = new Date(document.getElementById('depDate').value);
+  if(isEmpty(loc) === false && isNaN(date) === false){
     postData('/addResponse', {
-                                dest: loc.value,
-                                date: new Date(date.value)
+                                dest: loc,
+                                date: date
                               })
     .then(res => console.log(res))
   }
   else {
-    alert('Please fill out both location and date field')
+    if(isEmpty(loc)){
+      alert('Please fill out the location.');
+    }
+    if(isNaN(date)){
+      alert('Please fill out or correct the date format.')
+    }
   }
 
 }
