@@ -42,15 +42,16 @@ app.post('/addResponse', addResponse);
 
 async function addResponse(req, res){
   const newEntry = {id: entId,
-                    loc: '',
-                    country: '',
-                    date: '',
-                    daysRem: '',
-                    minTemp: '',
-                    maxTemp: '',
+                    loc: 'NaN',
+                    country: 'NaN',
+                    date: 'NaN',
+                    daysRem: 'NaN',
+                    minTemp: 'NaN',
+                    maxTemp: 'NaN',
                     lodg: '',
                     pack: '',
-                    note: ''
+                    note: '',
+                    picURL: 'NaN'
                    };
 
   await fetch(process.env.GEO_API_URL+encodeURIComponent(req.body.dest)+process.env.GEO_API_ID)
@@ -86,10 +87,27 @@ async function addResponse(req, res){
     })
     .catch(error => console.log('Weatherabit error:'+error));
   })
+  .then(async () => {
+    const searchPic = '&q='+encodeURIComponent(newEntry.loc)+'&category=buildings';
+    await fetch(process.env.PIX_API_URL+process.env.PIX_API_ID+searchPic)
+    .then(res => res.json())
+    .then(pic => {
+      if(pic.total === 0){
+        newEntry.picURL = 'default.jpg';
+      }
+      else {
+        newEntry.picURL = pic.hits[0].webformatURL;
+      }
+    })
+    .catch(error => {
+      console.log('pic error:'+error);
+      newEntry.picURL = 'default.jpg';
+    })
+  })
   .catch(error => console.log('Addresponse api error:'+error))
   .finally(() => {
     entId++;
-    console.log(newEntry)
+    res.send(newEntry);
   });
   // newEntry = {
   //   entId: entId,
