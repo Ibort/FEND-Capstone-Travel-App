@@ -2,11 +2,13 @@ function addNewTrip(){
   const loc = document.getElementById('tripLoc').value;
   const date = new Date(document.getElementById('depDate').value);
   if(isEmpty(loc) === false && isNaN(date) === false){
-    postData('/addResponse', {
+  Client.postD('/addResponse', {
                                 dest: loc,
                                 date: date
                               })
-    .then(res => console.log(res))
+    .then(res => {
+      Client.updUi();
+    })
   }
   else {
     if(isEmpty(loc)){
@@ -17,24 +19,6 @@ function addNewTrip(){
     }
   }
 
-}
-
-async function postData(url = '', data = {}){
-  const response = await fetch(url, {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      try {
-        const newData = await response.json();
-        return newData;
-      } catch(error){
-        console.log('Post data error:'+error);
-      }
 }
 
 function isEmpty(str){

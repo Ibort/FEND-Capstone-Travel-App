@@ -103,7 +103,9 @@ body {
 .dest__time{
   padding: 1em 0 1em 0;
   display: flex;
+  align-items: center;
   justify-content: center;
+  text-align: center;
   background: $bg_color;
   width: 100%;
 }
@@ -134,6 +136,7 @@ body {
   background: $bg_color;
 
   span{
+    text-align: center;
     font-size: 1.5em;
 
     span{
@@ -161,6 +164,7 @@ body {
     margin-top: 1em;
     margin-bottom: 1em;
     display: flex;
+    align-items: center;
     flex-flow: column;
     span{
       padding: 0 1em 0 1em;
@@ -172,7 +176,7 @@ body {
   display: flex;
   flex-flow: column;
   align-items: center;
-  padding: 1em 0 1em 0;
+  padding: 3em 0 1em 0;
   width: 100%;
   background: $hd-color;
   border-top: 2em solid $bg-color;

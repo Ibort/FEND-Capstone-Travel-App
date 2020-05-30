@@ -111,13 +111,13 @@ async function addResponse(req, res){
       newEntry.country = countryCodes[weather.country_code];
       newEntry.weather.minTemp = lowTemp+'C°';
       newEntry.weather.maxTemp = highTemp+'C°';
-      newEntry.weather.iURL = weatherCode[avWeath].url;
+      newEntry.weather.iURL = `"${weatherIconURL}${weatherCode[avWeath].url}.png"`;
       newEntry.weather.desc = weatherCode[avWeath].desc;
     })
     .catch(error => console.log('Weatherabit error:'+error));
   })
   .then(async () => {
-    const searchPic = '&q='+encodeURIComponent(newEntry.loc)+'&category=buildings';
+    const searchPic = '&q='+encodeURIComponent(newEntry.loc)+'+'+newEntry.country+'&category=buildings';
     await fetch(process.env.PIX_API_URL+process.env.PIX_API_ID+searchPic)
     .then(res => res.json())
     .then(pic => {
@@ -137,7 +137,8 @@ async function addResponse(req, res){
   .catch(error => console.log('Addresponse api error:'+error))
   .finally(() => {
     entId++;
-    res.send(newEntry);
+    projectData.push(newEntry)
+    res.send(projectData);
   });
   // newEntry = {
   //   entId: entId,
@@ -151,8 +152,8 @@ async function addResponse(req, res){
 function remainingDays(eDate){
   const oneDay = 24 * 60 * 60 * 1000;
   const today = Date.now();
-  const days = Math.round((today - eDate) / oneDay);
-  if(days >= 0) {
+  const days = Math.floor((today - eDate) / oneDay);
+  if(days > 0) {
     return 0;
   }
   else{
