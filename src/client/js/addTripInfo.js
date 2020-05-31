@@ -1,7 +1,7 @@
-function addForm(e){
+function addInfo(e){
   const lodging = document.getElementById(e.target.id);
-  const inputForm = document.createElement('input');
-  inputForm.type = 'text';
+  const inputForm = document.createElement('textarea');
+  inputForm.addEventListener('input', autoSize);
   const xBtn = document.createElement('span');
   xBtn.innerHTML = 'X';
   xBtn.classList.add('save__Btn')
@@ -13,6 +13,7 @@ function addForm(e){
   if(e.target.dataset.type === 'add'){
     if(lodging.innerHTML !== lodging.dataset.def){
       inputForm.value = lodging.innerHTML;
+      inputForm.style.height = lodging.scrollHeight+200+'px';
     }
     lodging.innerHTML = '';
     lodging.classList.remove('add__form__btn');
@@ -24,6 +25,7 @@ function addForm(e){
   }
   if(e.target.innerHTML === 'X'){
     const cancelForm = document.getElementById(e.target.parentElement.id);
+    cancelForm.removeEventListener('input', autoSize);
     if(isEmpty(inputForm.value)){
       cancelForm.innerHTML = cancelForm.dataset.def;
       cancelForm.classList.add('add__form__btn');
@@ -32,14 +34,12 @@ function addForm(e){
   }
   if(e.target.innerHTML === 'S'){
     const saveData = document.getElementById(e.target.parentElement.id);
-    const input = saveData.getElementsByTagName('input')[0];
-    if(isEmpty(input.value) === false){
-      saveData.innerHTML = input.value;
-    }
-    else {
-      alert('Please fill it out or cancel');
-    }
-
+    const input = saveData.getElementsByTagName('textarea')[0];
+    saveData.removeEventListener('input', autoSize);
+    saveData.innerHTML = input.value;
+    // if(isEmpty(input.innerHTML)){
+    //   saveData.innerHTML = saveData.dataset.def;
+    // }
   }
 }
 
@@ -47,4 +47,10 @@ function isEmpty(str){
     return str === null || str.match(/^ *$/) !== null;
 }
 
-export { addForm }
+function autoSize(from){
+  let input = event.target;
+  let height = event.target.scrollHeight;
+  input.style.height = height-4+'px';
+}
+
+export { addInfo }

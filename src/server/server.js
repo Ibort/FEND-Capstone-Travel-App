@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-let projectData = [];
+let projectData = {};
 let entId = 1;
 
 //from http://country.io/
@@ -144,9 +144,9 @@ async function addResponse(req, res){
     })
   })
   .then(() => {
-    entId++;
-    projectData.push(newEntry)
+    projectData[entId] = newEntry
     res.send(projectData);
+    entId++;
   })
   .catch(error => console.log('Addresponse api error:'+error));
 }

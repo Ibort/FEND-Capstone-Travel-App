@@ -4,8 +4,8 @@ async function updUi(){
   .then(res => res.json())
   .then(data => {
     cont.innerHTML = "";
-    for (let i = 0; i < data.length; i++) {
-      Client.genFrom(data[i].picURL, data[i].picTag, data[i].loc, data[i].country, data[i].date, data[i].daysRem, data[i].weather.iURL, data[i].weather.maxTemp, data[i].weather.minTemp, data[i].weather.desc);
+    for (let entry in data) {
+      Client.genFrom(data[entry].picURL, data[entry].picTag, data[entry].loc, data[entry].country, data[entry].date, data[entry].daysRem, data[entry].weather.iURL, data[entry].weather.maxTemp, data[entry].weather.minTemp, data[entry].weather.desc);
     }
   })
   .catch(error => console.log('Ui update error:'+error))

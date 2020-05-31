@@ -37,6 +37,9 @@ function genFrom(imgURL, imgTag, loc, co, depDate, daysLeft, wIconURL, maxTemp, 
     </div>
   </section>`
   target.appendChild(content);
+  document.getElementById('addLodging').addEventListener('click', Client.addInfo);
+  document.getElementById('addPacking').addEventListener('click', Client.addInfo);
+  document.getElementById('addNotes').addEventListener('click', Client.addInfo);
 }
 
 

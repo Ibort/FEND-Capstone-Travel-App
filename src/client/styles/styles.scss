@@ -63,22 +63,26 @@ body {
 
   .add__from__text{
     display: flex;
-    max-width: 800px;
+    max-width: 80%;
     padding: 20px;
     font-weight: bold;
     font-size: 1.2em;
+    text-align: center;
     align-self: center;
     margin-top: 1em;
     border: $btn_border_size solid $border_color;
     background: $bg_color;
 
-    input{
+    textarea{
       font-size: 1em;
-      width: 500px
+      width: 500px;
+      resize: vertical;
     }
     .save__Btn {
       border: 2px solid $border_color;
       padding: 10px 40px;
+      height: 100%;
+      align-self: flex-end;
     }
   }
 
