@@ -45,6 +45,22 @@ app.get('/all', getData);
 function getData(req, res){
   res.send(projectData);
 }
+
+// Post extra info
+app.post('/addInfo', addInfo);
+
+function addInfo(req, res){
+  const id = req.body.tripId;
+  if(req.body.caller === `addLodging${id}`){
+    projectData[id].lodg = req.body.text;
+  }
+  else if(req.body.caller === `addPacking${id}`){
+    projectData[id].pack = req.body.text;
+  }
+  else if(req.body.caller === `addNotes${id}`){
+    projectData[id].note = req.body.text;
+  }
+}
 // Post Route
 app.post('/addResponse', addResponse);
 
@@ -61,9 +77,9 @@ async function addResponse(req, res){
                       iURL: '',
                       desc: ''
                     },
-                    lodg: '',
-                    pack: '',
-                    note: '',
+                    lodg: '+add lodging info',
+                    pack: '+add packing list',
+                    note: '+add notes',
                     picURL: 'NaN',
                     picTag: 'default trip location image'
                    };

@@ -35,11 +35,20 @@ function addInfo(e){
   if(e.target.innerHTML === 'S'){
     const saveData = document.getElementById(e.target.parentElement.id);
     const input = saveData.getElementsByTagName('textarea')[0];
+    const tripId = e.target.closest("section > div").getAttribute('data-id')
+    const caller = e.target.parentElement.id;
     saveData.removeEventListener('input', autoSize);
     saveData.innerHTML = input.value;
-    // if(isEmpty(input.innerHTML)){
-    //   saveData.innerHTML = saveData.dataset.def;
-    // }
+    Client.postD('/addInfo', {
+                               tripId: tripId,
+                               caller: caller,
+                               text: input.value
+                             });
+    if(isEmpty(input.value)){
+      saveData.innerHTML = saveData.dataset.def;
+      cancelForm.classList.add('add__form__btn');
+      cancelForm.classList.remove('add__from__text');
+    }
   }
 }
 

@@ -1,19 +1,20 @@
-function genFrom(imgURL, imgTag, loc, co, depDate, daysLeft, wIconURL, maxTemp, minTemp, wDesc){
+function genFrom(id, addL, addP, addN, imgURL, imgTag, loc, co, depDate, daysLeft, wIconURL, maxTemp, minTemp, wDesc){
   const frag = document.createDocumentFragment();
   const content = document.createElement('div');
   content.classList.add('trip__template');
+  content.setAttribute('data-id', `${id}`)
   const target = document.getElementById('loadCont');
   if(imgURL === 'defTrip'){
     imgURL = Client.defTripImg;
   }
   content.innerHTML =
-  `<section class="entry__left">
+  `<div class="entry__left">
     <img src=${imgURL} alt=${imgTag}>
-    <div id="addLodging" class="add__form__btn" data-type="add" data-def="+add lodging info">+add lodging info</div>
-    <div id="addPacking" class="add__form__btn" data-type="add" data-def="+add packing list">+add packing list</div>
-    <div id="addNotes" class="add__form__btn" data-type="add" data-def="+add notes">+add notes</div>
-  </section>
-  <section class="entry__right">
+    <div id="addLodging${id}" class="add__form__btn" data-type="add" data-def="+add lodging info">${addL}</div>
+    <div id="addPacking${id}" class="add__form__btn" data-type="add" data-def="+add packing list">${addP}</div>
+    <div id="addNotes${id}" class="add__form__btn" data-type="add" data-def="+add notes">${addN}</div>
+  </div>
+  <div class="entry__right">
     <div class="dest__time">
       <span>
         <h1>My trip to: ${loc}, ${co}</h1>
@@ -35,12 +36,26 @@ function genFrom(imgURL, imgTag, loc, co, depDate, daysLeft, wIconURL, maxTemp, 
         <span>${wDesc} throught the day.</span>
       </div>
     </div>
-  </section>`
+  </div>`
   target.appendChild(content);
-  document.getElementById('addLodging').addEventListener('click', Client.addInfo);
-  document.getElementById('addPacking').addEventListener('click', Client.addInfo);
-  document.getElementById('addNotes').addEventListener('click', Client.addInfo);
+  document.getElementById(`addLodging${id}`).addEventListener('click', Client.addInfo);
+  document.getElementById(`addPacking${id}`).addEventListener('click', Client.addInfo);
+  document.getElementById(`addNotes${id}`).addEventListener('click', Client.addInfo);
+  if(addL !== '+add lodging info'){
+    const lodF = document.getElementById(`addLodging${id}`);
+    lodF.classList.remove('add__form__btn');
+    lodF.classList.add('add__from__text');
+  }
+  if(addP !== '+add packing list'){
+    const packF = document.getElementById(`addPacking${id}`);
+    packF.classList.remove('add__form__btn');
+    packF.classList.add('add__from__text');
+  }
+  if(addN !== '+add notes'){
+    const notF = document.getElementById(`addNotes${id}`);
+    notF.classList.remove('add__form__btn');
+    notF.classList.add('add__from__text');
+  }
 }
-
 
 export { genFrom }
