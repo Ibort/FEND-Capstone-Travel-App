@@ -1,15 +1,32 @@
 async function updUi(){
   const cont = document.getElementById('loadCont');
+  let daysLeft = [];
   await fetch('/all')
   .then(res => res.json())
   .then(data => {
-    console.log(data);
     cont.innerHTML = "";
     for (let entry in data) {
-      Client.genFrom(data[entry].id, data[entry].lodg, data[entry].pack, data[entry].note, data[entry].picURL, data[entry].picTag, data[entry].loc, data[entry].country, data[entry].date, data[entry].daysRem, data[entry].weather.iURL, data[entry].weather.maxTemp, data[entry].weather.minTemp, data[entry].weather.desc);
+      daysLeft.push({dayLeft: data[entry].daysRem, tripId: data[entry].id})
+    }
+    daysLeft.sort(compare)
+    for (let entry of daysLeft){
+      Client.genFrom(data[entry.tripId].id, data[entry.tripId].lodg, data[entry.tripId].pack,
+                     data[entry.tripId].note, data[entry.tripId].picURL, data[entry.tripId].picTag,
+                     data[entry.tripId].loc, data[entry.tripId].country, data[entry.tripId].date,
+                     data[entry.tripId].daysRem, data[entry.tripId].weather.iURL,
+                     data[entry.tripId].weather.maxTemp, data[entry.tripId].weather.minTemp,
+                     data[entry.tripId].weather.desc);
     }
   })
   .catch(error => console.log('Ui update error:'+error))
+}
+
+function compare(a, b) {
+  const dayA = a.dayLeft;
+  const dayB = b.dayLeft;
+
+  if (dayA > dayB) return 1;
+  if (dayB > dayA) return -1;
 }
 
 export { updUi }
