@@ -67,9 +67,10 @@ body {
     padding: 20px;
     font-weight: bold;
     font-size: 1.2em;
-    text-align: center;
+    word-break: break-all;
     align-self: center;
     margin-top: 1em;
+    white-space: pre-wrap;
     border: $btn_border_size solid $border_color;
     background: $bg_color;
 
@@ -144,7 +145,7 @@ body {
     font-size: 1.5em;
 
     span{
-      font-size: 1.2em;
+      font-size: 1.5em;
       font-weight: bold;
       color: $border_color;
     }
