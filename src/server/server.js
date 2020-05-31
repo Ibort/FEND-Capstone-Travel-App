@@ -65,7 +65,7 @@ async function addResponse(req, res){
                     pack: '',
                     note: '',
                     picURL: 'NaN',
-                    picTag: ''
+                    picTag: 'default trip location image'
                    };
 
   // call geonames api and save latitude longitude city and counrty
@@ -92,9 +92,11 @@ async function addResponse(req, res){
       return geoData;
     }
   })
+  // after sucessfully answer of lan and lon call wheatherabit api
   .then(async geoData => {
     await fetch(process.env.WHE_API_URL+geoData.lati+geoData.long+geoData.startDate+geoData.endDate+process.env.WHE_API_ID)
     .then(res => res.json())
+    // get from hourlyData the min,max temp and common weather icon url
     .then(weather => {
       const hourlyData = weather.data;
       const getWeathData = () => {
@@ -110,6 +112,7 @@ async function addResponse(req, res){
       const lowTemp = Math.min(...temp[0]);
       const highTemp = Math.max(...temp[0]);
       const avWeath = mostCommon(temp[1]);
+
       newEntry.loc = weather.city_name;
       newEntry.country = countryCodes[weather.country_code];
       newEntry.weather.minTemp = lowTemp+'C°';
@@ -117,15 +120,18 @@ async function addResponse(req, res){
       newEntry.weather.iURL = `"${weatherIconURL}${weatherCode[avWeath].url}.png"`;
       newEntry.weather.desc = weatherCode[avWeath].desc;
     })
-    .catch(error => console.log('Weatherabit error:'+error));
+    .catch(error => {
+      throw error;
+    });
   })
+  // calling pixabay api to get a picture for our trip
   .then(async () => {
     const searchPic = '&q='+encodeURIComponent(newEntry.loc)+'+'+newEntry.country+'&category=buildings';
     await fetch(process.env.PIX_API_URL+process.env.PIX_API_ID+searchPic)
     .then(res => res.json())
     .then(pic => {
       if(pic.total === 0){
-        newEntry.picURL = 'default.jpg';
+        newEntry.picURL = 'defTrip';
       }
       else {
         newEntry.picURL = pic.hits[0].webformatURL;
@@ -144,6 +150,10 @@ async function addResponse(req, res){
   })
   .catch(error => console.log('Addresponse api error:'+error));
 }
+
+app.get('/test', function (req, res) {
+    res.send('mockAPIResponse');
+})
 
 function remainingDays(eDate){
   const oneDay = 24 * 60 * 60 * 1000;
@@ -175,7 +185,3 @@ function mostCommon(array){
   }
   return item;
 }
-
-app.get('/test', function (req, res) {
-    res.send('mockAPIResponse');
-})

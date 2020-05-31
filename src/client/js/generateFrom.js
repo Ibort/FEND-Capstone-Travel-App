@@ -3,6 +3,9 @@ function genFrom(imgURL, imgTag, loc, co, depDate, daysLeft, wIconURL, maxTemp, 
   const content = document.createElement('div');
   content.classList.add('trip__template');
   const target = document.getElementById('loadCont');
+  if(imgURL === 'defTrip'){
+    imgURL = Client.defTripImg;
+  }
   content.innerHTML =
   `<section class="entry__left">
     <img src=${imgURL} alt=${imgTag}>
