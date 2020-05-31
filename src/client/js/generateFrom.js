@@ -33,7 +33,6 @@ function genFrom(imgURL, imgTag, loc, co, depDate, daysLeft, wIconURL, maxTemp, 
       </div>
     </div>
   </section>`
-  console.log(target);
   target.appendChild(content);
 }
 

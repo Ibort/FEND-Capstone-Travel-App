@@ -48,6 +48,7 @@ function getData(req, res){
 // Post Route
 app.post('/addResponse', addResponse);
 
+// add new entr in server projectData variable
 async function addResponse(req, res){
   const newEntry = {id: entId,
                     loc: 'NaN',
@@ -67,11 +68,13 @@ async function addResponse(req, res){
                     picTag: ''
                    };
 
+  // call geonames api and save latitude longitude city and counrty
   await fetch(process.env.GEO_API_URL+encodeURIComponent(req.body.dest)+process.env.GEO_API_ID)
   .then(res => res.json())
   .then(geo => {
     if(geo.totalResultsCount === 0){
-      res.send({error:'locError'})
+      res.send({error:'locError'});
+      throw new Error('Location is not valid');
     }
     else{
       const lng = '&lon='+geo.geonames[0].lng;
@@ -134,19 +137,12 @@ async function addResponse(req, res){
       newEntry.picURL = 'default.jpg';
     })
   })
-  .catch(error => console.log('Addresponse api error:'+error))
-  .finally(() => {
+  .then(() => {
     entId++;
     projectData.push(newEntry)
     res.send(projectData);
-  });
-  // newEntry = {
-  //   entId: entId,
-  //   destination: req.body.dest,
-  //   date: req.body.date
-  // }
-  // projectData.push(newEntry);
-  // res.send(projectData);
+  })
+  .catch(error => console.log('Addresponse api error:'+error));
 }
 
 function remainingDays(eDate){

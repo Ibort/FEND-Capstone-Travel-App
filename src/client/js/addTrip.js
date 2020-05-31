@@ -7,8 +7,14 @@ function addNewTrip(){
                                 date: date
                               })
     .then(res => {
-      Client.updUi();
+      if(res.error === 'locError'){
+        throw new Error('Location is not valid');
+      }
+      else{
+        Client.updUi();
+      }
     })
+    .catch(error => alert(error));
   }
   else {
     if(isEmpty(loc)){
