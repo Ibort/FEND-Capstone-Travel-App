@@ -16,6 +16,7 @@ document.getElementById('saveTrip').addEventListener('click', addNewTrip);
 updUi();
 
 export {
+  addNewTrip,
   postD,
   updUi,
   genFrom,
