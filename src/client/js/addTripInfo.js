@@ -1,4 +1,6 @@
+// adding extra infos to the added trips like packing notes and lodge info
 function addInfo(e){
+  // creating the input fields
   const lodging = document.getElementById(e.target.id);
   const inputForm = document.createElement('textarea');
   inputForm.addEventListener('input', autoSize);
@@ -9,7 +11,7 @@ function addInfo(e){
   const textField = document.createDocumentFragment();
   saveBtn.innerHTML = 'S';
   saveBtn.classList.add('save__Btn');
-
+  
   if(e.target.dataset.type === 'add'){
     if(lodging.innerHTML !== lodging.dataset.def){
       inputForm.value = lodging.innerHTML;

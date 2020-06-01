@@ -1,3 +1,4 @@
+// trip template form generated from the recived data what the server sends back
 function genFrom(id, addL, addP, addN, imgURL, imgTag, loc, co, depDate, daysLeft, wIconURL, maxTemp, minTemp, wDesc){
   const frag = document.createDocumentFragment();
   const content = document.createElement('div');
@@ -38,10 +39,12 @@ function genFrom(id, addL, addP, addN, imgURL, imgTag, loc, co, depDate, daysLef
     </div>
   </div>`
   target.appendChild(content);
+  // adding event listener
   document.getElementById(`addLodging${id}`).addEventListener('click', Client.addInfo);
   document.getElementById(`addPacking${id}`).addEventListener('click', Client.addInfo);
   document.getElementById(`addNotes${id}`).addEventListener('click', Client.addInfo);
   document.getElementById(`remTrip${id}`).addEventListener('click', Client.delTrip)
+  // adding the correct style if it is not default
   if(addL !== '+add lodging info'){
     const lodF = document.getElementById(`addLodging${id}`);
     lodF.classList.remove('add__form__btn');

@@ -1,7 +1,9 @@
+// adding a new trip
 function addNewTrip(){
   const loc = document.getElementById('tripLoc').value;
   const date = new Date(document.getElementById('depDate').value);
   const saveBtn = document.getElementById('saveTrip')
+  // check for empty fields, and send the location and date for the server
   if(isEmpty(loc) === false && isNaN(date) === false){
     saveBtn.removeEventListener('click', Client.addNewTrip);
     Client.postD('/addResponse', {
@@ -34,6 +36,7 @@ function addNewTrip(){
 
 }
 
+// check for empty fields
 function isEmpty(str){
     return str === null || str.match(/^ *$/) !== null;
 }

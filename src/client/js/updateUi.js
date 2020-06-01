@@ -1,3 +1,4 @@
+// loading the saved data into the index.html
 async function updUi(){
   const cont = document.getElementById('loadCont');
   let daysLeft = [];

@@ -1,3 +1,4 @@
+// delete the selected trip from the server.
 function delTrip(event){
   const text = event.target.parentElement.parentElement.querySelector('.dest__time').innerText;
   if(window.confirm(`Are you want to delete this trip:${text}`)){

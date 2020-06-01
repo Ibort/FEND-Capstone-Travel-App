@@ -1,3 +1,4 @@
+// send data to the server function
 async function postD(url = '', data = {}){
   const response = await fetch(url, {
         method: 'POST',
