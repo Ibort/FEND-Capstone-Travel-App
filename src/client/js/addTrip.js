@@ -20,7 +20,7 @@ function addNewTrip(){
     .finally(() => {
       saveBtn.addEventListener('click', Client.addNewTrip);
       document.getElementById('tripLoc').value = '';
-      document.getElementById('depDate').value = ''; 
+      document.getElementById('depDate').value = '';
     })
   }
   else {

@@ -46,6 +46,15 @@ function getData(req, res){
   res.send(projectData);
 }
 
+// delete secelted trip
+app.post('/delT', delT);
+
+function delT(req, res){
+  const id = req.body.id;
+  delete projectData[id];
+  res.send({status:'deleted'});
+}
+
 // Post extra info
 app.post('/addInfo', addInfo);
 

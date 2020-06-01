@@ -23,7 +23,7 @@ function genFrom(id, addL, addP, addN, imgURL, imgTag, loc, co, depDate, daysLef
     </div>
     <div class="add__rem__button">
       <span>save trip</span>
-      <span>remove trip</span>
+      <span id="remTrip${id}">remove trip</span>
     </div>
     <div class="distance">
       <span>${loc}, ${co} is <span>${daysLeft}</span> days away.</span>
@@ -41,6 +41,7 @@ function genFrom(id, addL, addP, addN, imgURL, imgTag, loc, co, depDate, daysLef
   document.getElementById(`addLodging${id}`).addEventListener('click', Client.addInfo);
   document.getElementById(`addPacking${id}`).addEventListener('click', Client.addInfo);
   document.getElementById(`addNotes${id}`).addEventListener('click', Client.addInfo);
+  document.getElementById(`remTrip${id}`).addEventListener('click', Client.delTrip)
   if(addL !== '+add lodging info'){
     const lodF = document.getElementById(`addLodging${id}`);
     lodF.classList.remove('add__form__btn');

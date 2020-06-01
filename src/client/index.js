@@ -5,6 +5,7 @@ import { genFrom } from './js/generateFrom';
 import { postD } from './js/postData';
 import { updUi } from './js/updateUi.js';
 import { addInfo } from './js/addTripInfo.js'
+import { delTrip } from './js/removeTrip.js'
 
 import defTripImg from './media/defTrip.jpg';
 
@@ -22,5 +23,6 @@ export {
   updUi,
   genFrom,
   addInfo,
+  delTrip,
   defTripImg
 }
