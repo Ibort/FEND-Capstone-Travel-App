@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI.",
   "main": "index.js",
-  "proxy": "http://localhost:8081",
   "dependencies": {
     "babel-loader": "^8.1.0",
     "body-parser": "^1.19.0",

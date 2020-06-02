@@ -1,6 +1,6 @@
 // send data to the server function
 async function postD(url = '', data = {}){
-  const response = await fetch(url, {
+  const response = await fetch('http://localhost:8080'+url, {
         method: 'POST',
         credentials: 'same-origin',
         headers: {

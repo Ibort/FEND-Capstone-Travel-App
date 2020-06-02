@@ -11,7 +11,7 @@ function addInfo(e){
   const textField = document.createDocumentFragment();
   saveBtn.innerHTML = 'S';
   saveBtn.classList.add('save__Btn');
-  
+
   if(e.target.dataset.type === 'add'){
     if(lodging.innerHTML !== lodging.dataset.def){
       inputForm.value = lodging.innerHTML;
