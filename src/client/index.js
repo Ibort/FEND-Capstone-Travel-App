@@ -8,6 +8,7 @@ import { addInfo } from './js/addTripInfo.js'
 import { delTrip } from './js/removeTrip.js'
 
 import defTripImg from './media/defTrip.jpg';
+import defWeathImg from './media/def_weather.png';
 
 import './styles/styles.scss';
 
@@ -24,5 +25,6 @@ export {
   genFrom,
   addInfo,
   delTrip,
-  defTripImg
+  defTripImg,
+  defWeathImg
 }

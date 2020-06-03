@@ -10,7 +10,7 @@ function genFrom(id, addL, addP, addN, imgURL, imgTag, loc, co, depDate, daysLef
   }
   content.innerHTML =
   `<div class="entry__left">
-    <img src=${imgURL} alt=${imgTag}>
+    <img src=${imgURL} alt=${imgTag} onerror="this.onerror=null;this.src=Client.defTripImg;" />
     <div id="addLodging${id}" class="add__form__btn" data-type="add" data-def="+add lodging info">${addL}</div>
     <div id="addPacking${id}" class="add__form__btn" data-type="add" data-def="+add packing list">${addP}</div>
     <div id="addNotes${id}" class="add__form__btn" data-type="add" data-def="+add notes">${addN}</div>
@@ -31,7 +31,7 @@ function genFrom(id, addL, addP, addN, imgURL, imgTag, loc, co, depDate, daysLef
     </div>
     <div class="weather">
       <h1>Typical weather for then is:</h1>
-      <img src=${wIconURL} alt="weather icon">
+      <img src=${wIconURL} alt="weather icon" onerror="this.onerror=null;this.src=Client.defWeathImg;" />
       <div class="weather__text">
         <span>High: ${maxTemp}, Low: ${minTemp}</span>
         <span>${wDesc} throught the day.</span>
