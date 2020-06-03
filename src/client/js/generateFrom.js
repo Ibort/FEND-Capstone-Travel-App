@@ -23,7 +23,7 @@ function genFrom(id, addL, addP, addN, imgURL, imgTag, loc, co, depDate, daysLef
       </span>
     </div>
     <div class="add__rem__button">
-      <span>save trip</span>
+      <!-- <span>save trip</span> -->
       <span id="remTrip${id}">remove trip</span>
     </div>
     <div class="distance">

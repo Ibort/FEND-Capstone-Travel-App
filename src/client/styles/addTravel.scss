@@ -1,0 +1,49 @@
+// main section add travel
+%btn-template {
+  margin-top: 1em;
+  width: 250px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 20px 40px 20px 40px;
+  border: $btn_border_size solid $soft-orange;
+  background: $darker-blue;
+}
+
+.add__travel{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 3em 0 1em 0;
+  width: 100%;
+  background: $dark-blue;
+  border-top: 2em solid $darker-blue;
+
+  .travel__text{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%;
+    h1{
+      margin: 0;
+      min-width: 30%;
+      max-width: 40%;
+    }
+    input{
+      min-width: 40%;
+      max-width: 50%;
+      font-size: 1.3em;
+      margin-left: 10px;
+      color: $font_color;
+      background: $darker-blue;
+      border: 0;
+    }
+    input:focus{
+      outline: none;
+    }
+  }
+  // save trip button
+  span{
+    @extend %btn-template;
+  }
+}

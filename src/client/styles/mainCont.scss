@@ -1,0 +1,149 @@
+@import 'addTravel';
+
+// main content header
+.cont__hd{
+  font-size: 1.5em;
+  margin-top: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+#addTrip{
+  padding: 20px;
+  border: $btn_border_size solid $soft-orange;
+  border-radius: 30px;
+  background: $dark-blue;
+}
+// main conent section -> travels__cont
+.travels__cont{
+  margin-top: 1em;
+  background: $dark-blue;
+}
+
+.trip__template{
+  border: 10px solid $soft-orange;
+}
+
+// destination picture and add infos
+.entry__left{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  img{
+    width: 100%;
+  }
+  // button format
+  .add__form__btn{
+    @extend %btn-template;
+    width: 400px;
+    border-radius: 30px;
+  }
+  // textField format
+  .add__from__text{
+    display: flex;
+    max-width: 80%;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
+    word-break: break-all;
+    align-self: center;
+    margin-top: 1em;
+    white-space: pre-wrap;
+    border: $btn_border_size solid $soft-orange;
+    background: $darker-blue;
+
+    textarea{
+      font-size: 1em;
+      width: 500px;
+      resize: vertical;
+    }
+    // save and cancel button
+    .save__Btn {
+      border: 2px solid $soft-orange;
+      padding: 10px 40px;
+      height: 100%;
+      align-self: flex-end;
+    }
+  }
+}
+// destinaiton, departing date, weather, days left, remove button
+.entry__right{
+  margin-top: 1em;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+
+  h1{
+    font-size: 1.8em;
+    margin: 0;
+    align-self: center;
+  }
+  // detiantion and departing date
+  .dest__time{
+    padding: 1em 0 1em 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: $darker-blue;
+    width: 100%;
+  }
+  // save and remove button
+  .add__rem__button{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 2em;
+
+    span{
+      @extend %btn-template;
+    }
+  }
+
+  .distance{
+    padding: 1em 0 1em 0;
+    display: flex;
+    margin-top: 2em;
+    justify-content: center;
+    width: 100%;
+    background: $darker-blue;
+
+    span{
+      text-align: center;
+      font-size: 1.5em;
+
+      span{
+        font-size: 1.5em;
+        font-weight: bold;
+        color: $soft-orange;
+      }
+    }
+  }
+
+  .weather{
+    width: 100%;
+    margin-top: 2em;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+
+    img{
+      margin-top: 1em;
+      align-self: center;
+      width: 256px;
+      height: 256px;
+    }
+    .weather__text{
+      margin-top: 1em;
+      margin-bottom: 1em;
+      display: flex;
+      align-items: center;
+      flex-flow: column;
+      span{
+        padding: 0 1em 0 1em;
+      }
+    }
+  }
+}
