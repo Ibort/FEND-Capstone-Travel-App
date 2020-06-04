@@ -11,7 +11,7 @@
 }
 
 #addTrip{
-  padding: 20px;
+  padding: 0.6em;
   border: $btn_border_size solid $soft-orange;
   border-radius: 30px;
   background: $dark-blue;
@@ -23,7 +23,7 @@
 }
 
 .trip__template{
-  border: 10px solid $soft-orange;
+  border: 0.2em solid $soft-orange;
 }
 
 // destination picture and add infos
@@ -37,7 +37,7 @@
   // button format
   .add__form__btn{
     @extend %btn-template;
-    width: 400px;
+    width: 60%;
     border-radius: 30px;
   }
   // textField format
@@ -132,8 +132,7 @@
     img{
       margin-top: 1em;
       align-self: center;
-      width: 256px;
-      height: 256px;
+      width: 20%;
     }
     .weather__text{
       margin-top: 1em;

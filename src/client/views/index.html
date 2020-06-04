@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
     <title>Travel Planner App</title>
   </head>
   <body>
@@ -16,13 +17,15 @@
       <section id="loadCont" class="travels__cont">
       </section>
       <section class="add__travel">
-        <div class="travel__text">
-          <h1>My trip to:</h1>
-          <input id="tripLoc" type="text" name="Location" placeholder="Enter Location">
-        </div>
-        <div class="travel__text">
-          <h1>Departing:</h1>
-          <input id="depDate" type="date" name="Departure date" placeholder="YYYY-MM-DD">
+        <div class="travel__input">
+          <div class="travel__text">
+            <h1>My trip to:</h1>
+            <h1>Departing:</h1>
+          </div>
+          <div class="travel__text">
+            <input id="tripLoc" type="text" name="Location" placeholder="Enter Location">
+            <input id="depDate" type="date" name="Departure date" placeholder="YYYY-MM-DD">
+          </div>
         </div>
         <span id="saveTrip">Save Trip</span>
       </section>
