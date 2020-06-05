@@ -11,9 +11,9 @@ function genFrom(id, addL, addP, addN, imgURL, imgTag, loc, co, depDate, daysLef
   content.innerHTML =
   `<div class="entry__left">
     <img src=${imgURL} alt=${imgTag} onerror="this.onerror=null;this.src=Client.defTripImg;" />
-    <div id="addLodging${id}" class="add__form__btn" data-type="add" data-def="+add lodging info">${addL}</div>
-    <div id="addPacking${id}" class="add__form__btn" data-type="add" data-def="+add packing list">${addP}</div>
-    <div id="addNotes${id}" class="add__form__btn" data-type="add" data-def="+add notes">${addN}</div>
+    <div id="addLodging${id}" class="add__form__btn" data-def="+add lodging info">${addL}</div>
+    <div id="addPacking${id}" class="add__form__btn" data-def="+add packing list">${addP}</div>
+    <div id="addNotes${id}" class="add__form__btn" data-def="+add notes">${addN}</div>
   </div>
   <div class="entry__right">
     <div class="dest__time">

@@ -56,13 +56,13 @@
 
     textarea{
       font-size: 1em;
-      width: 500px;
+      // width: 60%;
       resize: vertical;
     }
     // save and cancel button
     .save__Btn {
       border: 2px solid $soft-orange;
-      padding: 10px 40px;
+      padding: 0.3em 1em;
       height: 100%;
       align-self: flex-end;
     }
