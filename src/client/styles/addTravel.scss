@@ -8,6 +8,7 @@
   padding: 0.8em 1.5em 0.8em 1.5em;
   border: $btn_border_size solid $soft-orange;
   background: $darker-blue;
+  cursor: pointer;
 }
 
 .add__travel{
@@ -17,11 +18,13 @@
   padding: 3em 0 1em 0;
   width: 100%;
   background: $dark-blue;
-  border-top: 2em solid $darker-blue;
+  border-top: 3em solid $darker-blue;
 
   .travel__input{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
   }
 
   .travel__text{

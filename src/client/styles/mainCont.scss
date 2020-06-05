@@ -4,6 +4,7 @@
 .cont__hd{
   font-size: 1.5em;
   margin-top: 1em;
+  padding: 0 1em;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,15 +16,17 @@
   border: $btn_border_size solid $soft-orange;
   border-radius: 30px;
   background: $dark-blue;
+  cursor: pointer;
 }
 // main conent section -> travels__cont
 .travels__cont{
-  margin-top: 1em;
-  background: $dark-blue;
+  // margin-top: 2em;
 }
 
 .trip__template{
   border: 0.2em solid $soft-orange;
+  margin-top: 3em;
+  background: $dark-blue;
 }
 
 // destination picture and add infos
@@ -56,7 +59,6 @@
 
     textarea{
       font-size: 1em;
-      // width: 60%;
       resize: vertical;
     }
     // save and cancel button
@@ -65,6 +67,7 @@
       padding: 0.3em 1em;
       height: 100%;
       align-self: flex-end;
+      cursor: pointer;
     }
   }
 }
