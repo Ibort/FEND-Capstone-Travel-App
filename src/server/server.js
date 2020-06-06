@@ -74,7 +74,26 @@ function addInfo(req, res){
 }
 // Post Route
 app.post('/addResponse', addResponse);
+app.post('/searchPlace', searchPlace);
 
+async function searchPlace(req, res){
+  await fetch(process.env.GEO_API_URL+'searchJSON?name_equals='+encodeURIComponent(req.body.dest)+'&maxRows=5'+process.env.GEO_API_ID)
+  .then(res => res.json())
+  .then(geo => {
+    if(geo.totalResultsCount === 0){
+      res.send({error:'locError'});
+      throw new Error('Location is not valid');
+    }
+    else{
+      let find = [];
+      for(let ent of geo.geonames){
+        find.push({id: ent.geonameId ,place: ent.name, cont: ent.countryCode})
+      }
+      res.send({searchRes: find});
+    }
+  })
+  .catch(error => console.log('searchPlace error'+error));
+}
 // add new entry to server projectData variable
 async function addResponse(req, res){
   const newEntry = {id: entId,
@@ -85,8 +104,8 @@ async function addResponse(req, res){
                     weather: {
                       minTemp: 'NaN',
                       maxTemp: 'NaN',
-                      iURL: '',
-                      desc: ''
+                      iURL: '900',
+                      desc: 'NaN'
                     },
                     lodg: '+add lodging info',
                     pack: '+add packing list',
@@ -96,30 +115,24 @@ async function addResponse(req, res){
                    };
 
   // call geonames api and save latitude longitude city and counrty
-  await fetch(process.env.GEO_API_URL+encodeURIComponent(req.body.dest)+process.env.GEO_API_ID)
+  await fetch(process.env.GEO_API_URL+'getJSON?geonameId='+req.body.dest+process.env.GEO_API_ID)
   .then(res => res.json())
   .then(geo => {
-    // if the location is not corret throw error
-    if(geo.totalResultsCount === 0){
-      res.send({error:'locError'});
-      throw new Error('Location is not valid');
-    }
-    // loc is ok then save the date calculate the remaining Days. Send the lat, long, start date, end date, theese are nessesery for the weatherbit api
-    else{
-      const lng = '&lon='+geo.geonames[0].lng;
-      const lat = '&lat='+geo.geonames[0].lat;
-      const date = new Date(req.body.date);
-      newEntry.date = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
-      newEntry.daysRem = remainingDays(date);
-      const sDate = `&start_date=${date.getFullYear()-1}-${date.getMonth()+1}-${date.getDate()}`
-      const eDate = `&end_date=${date.getFullYear()-1}-${date.getMonth()+1}-${date.getDate()+1}`
-      const geoData = {long: lng,
-                       lati: lat,
-                       startDate: sDate,
-                       endDate: eDate
-                      }
-      return geoData;
-    }
+    //save the date calculate the remaining Days. Send the lat, long, start date, end date, theese are nessesery for the weatherbit api
+    const lng = '&lon='+geo.lng;
+    const lat = '&lat='+geo.lat;
+    const date = new Date(req.body.date);
+    newEntry.date = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
+    newEntry.daysRem = remainingDays(date);
+    newEntry.loc = geo.name;
+    const sDate = `&start_date=${date.getFullYear()-1}-${date.getMonth()+1}-${date.getDate()}`
+    const eDate = `&end_date=${date.getFullYear()-1}-${date.getMonth()+1}-${date.getDate()+1}`
+    const geoData = {long: lng,
+                     lati: lat,
+                     startDate: sDate,
+                     endDate: eDate
+                    }
+    return geoData;
   })
   // after sucessfully answer of lan and lon call wheatherabit api
   .then(async geoData => {
@@ -144,7 +157,6 @@ async function addResponse(req, res){
       const highTemp = Math.max(...temp[0]);
       const avWeath = mostCommon(temp[1]);
       // save to projectdata variable
-      newEntry.loc = weather.city_name;
       newEntry.country = countryCodes[weather.country_code];
       newEntry.weather.minTemp = lowTemp+'C°';
       newEntry.weather.maxTemp = highTemp+'C°';
@@ -159,12 +171,23 @@ async function addResponse(req, res){
   .then(async () => {
     // search for (loc + country + building cat) pictures
     const searchPic = '&q='+encodeURIComponent(newEntry.loc)+'+'+newEntry.country+'&category=buildings';
+    const searchCountryPic = '&q='+newEntry.country;
     await fetch(process.env.PIX_API_URL+process.env.PIX_API_ID+searchPic)
     .then(res => res.json())
     // if there is no result save the defualt picture
-    .then(pic => {
+    .then(async pic => {
       if(pic.total === 0){
-        newEntry.picURL = 'defTrip';
+        await fetch(process.env.PIX_API_URL+process.env.PIX_API_ID+searchCountryPic)
+        .then(res => res.json())
+        .then(pic2 => {
+            if(pic2.total === 0){
+              newEntry.picURL = 'defTrip';
+            }
+            else {
+              newEntry.picURL = pic2.hits[0].webformatURL;
+              newEntry.picTag = pic2.hits[0].tags;
+            }
+        })
       }
       // save the first result url to projectdata
       else {
@@ -177,7 +200,7 @@ async function addResponse(req, res){
       newEntry.picURL = 'default.jpg';
     })
   })
-  // add the data collection to our projectData variable
+  //add the data collection to our projectData variable
   .then(() => {
     projectData[entId] = newEntry
     res.send(projectData);

@@ -28,6 +28,7 @@
   }
 
   .travel__text{
+    position: relative;
     display: flex;
     flex-direction: column;
     h1{
@@ -42,6 +43,19 @@
     }
     input:focus{
       outline: none;
+    }
+    .search__res{
+      position: absolute;
+      width: 100%;
+      left: 10px;
+      font-size: 1.3em;
+      font-weight: bold;
+      background: $darker-blue;
+    }
+    .search__res div:hover{
+      border: $btn_border_size solid $soft-orange;
+      cursor: pointer;
+      background: $dark-blue;
     }
   }
   // save trip button

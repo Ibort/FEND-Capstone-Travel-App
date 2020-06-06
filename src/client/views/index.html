@@ -22,7 +22,8 @@
             <h1>My trip to:</h1>
             <h1>Departing:</h1>
           </div>
-          <div class="travel__text">
+          <div id="tTInput" class="travel__text">
+            <div id="sRes" class="search__res"></div>
             <input id="tripLoc" type="text" name="Location" placeholder="Enter Location">
             <input id="depDate" type="date" name="Departure date" placeholder="YYYY-MM-DD">
           </div>
@@ -34,7 +35,7 @@
 
     </footer>
   </div>
-  <script>
+  <!-- <script>
       // Check that service workers are supported
       if ('serviceWorker' in navigator) {
           // Use the window load event to keep the page load performant
@@ -42,6 +43,6 @@
               navigator.serviceWorker.register('/service-worker.js');
           });
       }
-  </script>
+  </script> -->
   </body>
 </html>
