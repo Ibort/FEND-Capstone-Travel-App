@@ -46,6 +46,7 @@ function listening(){
 app.get('/all', getData);
 // Callback function to complete GET '/all'
 function getData(req, res){
+  // update days left data
   if(Object.entries(projectData).length > 0){
     for(let data in projectData){
       projectData[data].daysRem = remainingDays(projectData[data].calcDate);
@@ -83,7 +84,9 @@ function addInfo(req, res){
 app.post('/addResponse', addResponse);
 app.post('/searchPlace', searchPlace);
 
+// search for given location function
 async function searchPlace(req, res){
+  // call geonames api with max 5 results
   await fetch(geoURL+'searchJSON?name_equals='+encodeURIComponent(req.body.dest)+'&maxRows=5'+process.env.GEO_API_ID)
   .then(res => res.json())
   .then(geo => {

@@ -43,12 +43,14 @@ function genFrom(id, addL, addP, addN, imgURL, imgTag, loc, co, depDate, daysLef
     </div>
   </div>`
   target.appendChild(content);
+  // add expired style if days left is 0
   if(daysLeft === 0){
     content.firstChild.innerHTML = '<h1>Trip Expired!</h1>';
     content.firstChild.innerHTML += '<h2>Double click to remove trip.</h2>';
     content.firstChild.classList.add('trip__expired');
     content.firstChild.addEventListener('dblclick', Client.delTrip)
   }
+  // adding the nessesery buttons event isteners and load default or changed infos
   else{
     // adding event listener
     document.getElementById(`addLodging${id}`).addEventListener('click', Client.addInfo);

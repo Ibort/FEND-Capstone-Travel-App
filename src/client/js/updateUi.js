@@ -6,10 +6,14 @@ async function updUi(){
   .then(res => res.json())
   .then(data => {
     cont.innerHTML = "";
+    // sort the received data ascend 'days left' order
+    // loading the days left and id-s into an array
     for (let entry in data) {
       daysLeft.push({dayLeft: data[entry].daysRem, tripId: data[entry].id})
     }
+    // sort the array into ascend
     daysLeft.sort(compare);
+    // load the data to the website
     for (let entry of daysLeft){
       Client.genFrom(data[entry.tripId].id, data[entry.tripId].lodg, data[entry.tripId].pack,
                      data[entry.tripId].note, data[entry.tripId].picURL, data[entry.tripId].picTag,

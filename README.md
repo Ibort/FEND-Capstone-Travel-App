@@ -24,4 +24,7 @@ This app runs with node and built with webpack. First you need to add a location
   - Common weather data generated from depart day.
     - icon.
     - highest and lowest themp with description.
+- Save new trips
+  - location field
+  - departe date field
 - Travel App footer

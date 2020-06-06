@@ -15,11 +15,12 @@ function addInfo(e){
   saveBtn.innerHTML = 'S';
   saveBtn.classList.add('save__Btn');
   saveBtn.addEventListener('click', updateInfo);
-
+  // check if default data is changed and load the typed in data
   if(infoCont.innerHTML !== infoCont.dataset.def){
     inputForm.value = infoCont.innerHTML;
     inputForm.style.height = infoCont.scrollHeight+200+'px';
   }
+
   infoCont.innerHTML = '';
   infoCont.classList.remove('add__form__btn');
   infoCont.classList.add('add__from__text');
@@ -32,7 +33,7 @@ function addInfo(e){
 }
 
 
-// update info function
+// update info function for the save and clear buttons
 function updateInfo(e){
   const updateData = document.getElementById(e.target.parentElement.id);
   const input = updateData.getElementsByTagName('textarea')[0];
@@ -65,7 +66,7 @@ function updateInfo(e){
 function isEmpty(str){
     return str === null || str.match(/^ *$/) !== null;
 }
-
+// auto resize thext input fileds
 function autoSize(from){
   let input = event.target;
   let height = event.target.scrollHeight;

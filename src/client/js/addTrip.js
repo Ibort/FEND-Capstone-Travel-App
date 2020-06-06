@@ -24,18 +24,20 @@ function addNewTrip(){
                                         dest: res.searchRes[0].id,
                                         date: date
           })
+          // refresh site
           .then(res => {
             Client.updUi();
           })
           .catch(error => alert(error));
         }
-        // if there are more than one result, options to choose from and send back the chosen one
+        // if there are more than one result, choose from th edropdown menu and send back to the server
         else{
           const sendChosenLoc = (e) => {
             Client.postD('/addResponse', {
                                           dest: e.target.getAttribute('data-loc'),
                                           date: date
             })
+            // refresh website
             .then(res => {
               Client.updUi();
             })
@@ -43,6 +45,7 @@ function addNewTrip(){
             inputs.removeEventListener('click', sendChosenLoc);
             sRes.innerHTML = '';
           };
+          // build menu from recived locations
           for(let i of res.searchRes){
             sRes.innerHTML += `<div data-loc=${i.id}>${i.place} - ${i.cont}</div>`
           }
@@ -50,12 +53,14 @@ function addNewTrip(){
         }
       })
     .catch(error => alert(error))
+    // remove the menu
     .finally(() => {
       saveBtn.addEventListener('click', Client.addNewTrip);
       document.getElementById('tripLoc').value = '';
       document.getElementById('depDate').value = '';
     })
   }
+  // throw empty field error
   else {
     if(isEmpty(loc)){
       alert('Please fill out the location.');
