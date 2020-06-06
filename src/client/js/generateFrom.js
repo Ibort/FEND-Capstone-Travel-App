@@ -43,7 +43,7 @@ function genFrom(id, addL, addP, addN, imgURL, imgTag, loc, co, depDate, daysLef
   if(daysLeft === 0){
     content.firstChild.innerHTML = '<h1>Trip Expired!</h1>';
     content.firstChild.classList.add('trip__expired');
-    content.firstChild.addEventListener('doubleclick', Client.delTrip)
+    content.firstChild.addEventListener('dblclick', Client.delTrip)
   }
   else{
     // adding event listener
