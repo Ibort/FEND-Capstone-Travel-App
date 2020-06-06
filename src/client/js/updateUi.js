@@ -9,6 +9,7 @@ async function updUi(){
     for (let entry in data) {
       daysLeft.push({dayLeft: data[entry].daysRem, tripId: data[entry].id})
     }
+    daysLeft.sort(compare);
     for (let entry of daysLeft){
       Client.genFrom(data[entry.tripId].id, data[entry.tripId].lodg, data[entry.tripId].pack,
                      data[entry.tripId].note, data[entry.tripId].picURL, data[entry.tripId].picTag,

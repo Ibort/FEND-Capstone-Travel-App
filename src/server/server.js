@@ -170,7 +170,7 @@ async function addResponse(req, res){
   // calling pixabay api to get a picture for our trip
   .then(async () => {
     // search for (loc + country + building cat) pictures
-    const searchPic = '&q='+encodeURIComponent(newEntry.loc)+'+'+newEntry.country+'&category=buildings';
+    const searchPic = '&q='+encodeURIComponent(newEntry.loc)+'+'+newEntry.country+'&category=travel';
     const searchCountryPic = '&q='+newEntry.country;
     await fetch(process.env.PIX_API_URL+process.env.PIX_API_ID+searchPic)
     .then(res => res.json())
