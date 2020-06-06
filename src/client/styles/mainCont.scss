@@ -13,15 +13,14 @@
 
 #addTrip{
   padding: 0.6em;
-  border: $btn_border_size solid $soft-orange;
+  border: $btn_border_size solid $yellow;
   border-radius: 30px;
-  background: $dark-blue;
+  background: $dark-red;
   cursor: pointer;
 }
 
 #addTrip:hover{
-  color: $darker-blue;
-  background: $soft-orange;
+  @extend %btn-hover;
 }
 // main conent section -> travels__cont
 .travels__cont{
@@ -30,9 +29,9 @@
 
 .trip__template{
   position: relative;
-  border: 0.2em solid $soft-orange;
+  border: 0.2em solid $yellow;
   margin-top: 3em;
-  background: $dark-blue;
+  background: $dark-red;
 }
 // expired trip style
 .trip__expired{
@@ -56,7 +55,7 @@
     padding-left: 4em;
     font-size: 0.5em;
     cursor: default;
-    color: $soft-orange;
+    color: $yellow;
     transform: rotate(-45deg);
     opacity: 0.6;
   }
@@ -90,8 +89,8 @@
     word-break: break-all;
     align-self: center;
     white-space: pre-wrap;
-    border: $btn_border_size solid $soft-orange;
-    background: $darker-blue;
+    border: $btn_border_size solid $yellow;
+    background: $brown;
 
     textarea{
       font-size: 1em;
@@ -99,7 +98,7 @@
     }
     // save and cancel button
     .save__Btn {
-      border: 2px solid $soft-orange;
+      border: 2px solid $yellow;
       padding: 0.3em 1em;
       height: 100%;
       align-self: flex-end;
@@ -126,7 +125,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: $darker-blue;
+    background: $brown;
     width: 100%;
   }
   // save and remove button
@@ -150,7 +149,7 @@
     margin-top: 2em;
     justify-content: center;
     width: 100%;
-    background: $darker-blue;
+    background: $brown;
 
     span{
       text-align: center;
@@ -159,7 +158,7 @@
       span{
         font-size: 1.5em;
         font-weight: bold;
-        color: $soft-orange;
+        color: $yellow;
       }
     }
   }
