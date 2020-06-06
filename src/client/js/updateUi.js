@@ -9,7 +9,6 @@ async function updUi(){
     for (let entry in data) {
       daysLeft.push({dayLeft: data[entry].daysRem, tripId: data[entry].id})
     }
-    daysLeft.sort(compare)
     for (let entry of daysLeft){
       Client.genFrom(data[entry.tripId].id, data[entry.tripId].lodg, data[entry.tripId].pack,
                      data[entry.tripId].note, data[entry.tripId].picURL, data[entry.tripId].picTag,
@@ -26,8 +25,10 @@ function compare(a, b) {
   const dayA = a.dayLeft;
   const dayB = b.dayLeft;
 
-  if (dayA > dayB) return 1;
-  if (dayB > dayA) return -1;
+  if(dayA==0 && dayB!=0) return 1;
+  else if(dayB==0 && dayA!=0) return -1;
+  else if (dayA > dayB) return 1;
+  else if (dayB > dayA) return -1;
 }
 
 export { updUi }

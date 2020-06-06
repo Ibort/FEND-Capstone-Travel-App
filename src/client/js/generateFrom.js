@@ -9,7 +9,8 @@ function genFrom(id, addL, addP, addN, imgURL, imgTag, loc, co, depDate, daysLef
     imgURL = Client.defTripImg;
   }
   content.innerHTML =
-  `<div class="entry__left">
+ `<div id="tripExpired"></div>
+  <div class="entry__left">
     <img src=${imgURL} alt=${imgTag} onerror="this.onerror=null;this.src=Client.defTripImg;" />
     <div id="addLodging${id}" class="add__form__btn" data-def="+add lodging info">${addL}</div>
     <div id="addPacking${id}" class="add__form__btn" data-def="+add packing list">${addP}</div>
@@ -39,26 +40,34 @@ function genFrom(id, addL, addP, addN, imgURL, imgTag, loc, co, depDate, daysLef
     </div>
   </div>`
   target.appendChild(content);
-  // adding event listener
-  document.getElementById(`addLodging${id}`).addEventListener('click', Client.addInfo);
-  document.getElementById(`addPacking${id}`).addEventListener('click', Client.addInfo);
-  document.getElementById(`addNotes${id}`).addEventListener('click', Client.addInfo);
-  document.getElementById(`remTrip${id}`).addEventListener('click', Client.delTrip)
-  // adding the correct style if it is not default
-  if(addL !== '+add lodging info'){
-    const lodF = document.getElementById(`addLodging${id}`);
-    lodF.classList.remove('add__form__btn');
-    lodF.classList.add('add__from__text');
+  if(daysLeft === 0){
+    content.firstChild.innerHTML = '<h1>Trip Expired!</h1>';
+    content.firstChild.classList.add('trip__expired');
+    content.firstChild.addEventListener('doubleclick', Client.delTrip)
   }
-  if(addP !== '+add packing list'){
-    const packF = document.getElementById(`addPacking${id}`);
-    packF.classList.remove('add__form__btn');
-    packF.classList.add('add__from__text');
-  }
-  if(addN !== '+add notes'){
-    const notF = document.getElementById(`addNotes${id}`);
-    notF.classList.remove('add__form__btn');
-    notF.classList.add('add__from__text');
+  else{
+    // adding event listener
+    document.getElementById(`addLodging${id}`).addEventListener('click', Client.addInfo);
+    document.getElementById(`addPacking${id}`).addEventListener('click', Client.addInfo);
+    document.getElementById(`addNotes${id}`).addEventListener('click', Client.addInfo);
+    document.getElementById(`remTrip${id}`).addEventListener('click', Client.delTrip)
+
+    // adding the correct style if it is not default
+    if(addL !== '+add lodging info'){
+      const lodF = document.getElementById(`addLodging${id}`);
+      lodF.classList.remove('add__form__btn');
+      lodF.classList.add('add__from__text');
+    }
+    if(addP !== '+add packing list'){
+      const packF = document.getElementById(`addPacking${id}`);
+      packF.classList.remove('add__form__btn');
+      packF.classList.add('add__from__text');
+    }
+    if(addN !== '+add notes'){
+      const notF = document.getElementById(`addNotes${id}`);
+      notF.classList.remove('add__form__btn');
+      notF.classList.add('add__from__text');
+    }
   }
 }
 

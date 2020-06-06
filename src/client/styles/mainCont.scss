@@ -24,9 +24,27 @@
 }
 
 .trip__template{
+  position: relative;
   border: 0.2em solid $soft-orange;
   margin-top: 3em;
   background: $dark-blue;
+}
+// expired trip style
+.trip__expired{
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+  width: 100%;
+  height: 100%;
+  background-color:rgba(0, 0, 0, 0.6);
+
+  h1 {
+    cursor: default;
+    color: red;
+    transform: rotate(-45deg);
+  }
 }
 
 // destination picture and add infos
