@@ -12,8 +12,11 @@ function genFrom(id, addL, addP, addN, imgURL, imgTag, loc, co, depDate, daysLef
  `<div id="tripExpired"></div>
   <div class="entry__left">
     <img src=${imgURL} alt=${imgTag} onerror="this.onerror=null;this.src=Client.defTripImg;" />
+    <h1>Lodging Info:</h1>
     <div id="addLodging${id}" class="add__form__btn" data-def="+add lodging info">${addL}</div>
+    <h1>Packing List:</h1>
     <div id="addPacking${id}" class="add__form__btn" data-def="+add packing list">${addP}</div>
+    <h1>Notes:</h1>
     <div id="addNotes${id}" class="add__form__btn" data-def="+add notes">${addN}</div>
   </div>
   <div class="entry__right">

@@ -44,6 +44,11 @@ function listening(){
 app.get('/all', getData);
 // Callback function to complete GET '/all'
 function getData(req, res){
+  if(Object.entries(projectData).length > 0){
+    for(let data in projectData){
+      projectData[data].daysRem = remainingDays(projectData[data].calcDate);
+    }
+  }
   res.send(projectData);
 }
 
@@ -100,6 +105,7 @@ async function addResponse(req, res){
                     loc: 'NaN',
                     country: 'NaN',
                     date: 'NaN',
+                    calcDate: Date.now(),
                     daysRem: 'NaN',
                     weather: {
                       minTemp: 'NaN',
@@ -122,6 +128,7 @@ async function addResponse(req, res){
     const lng = '&lon='+geo.lng;
     const lat = '&lat='+geo.lat;
     const date = new Date(req.body.date);
+    newEntry.calcDate = date;
     newEntry.date = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
     newEntry.daysRem = remainingDays(date);
     newEntry.loc = geo.name;

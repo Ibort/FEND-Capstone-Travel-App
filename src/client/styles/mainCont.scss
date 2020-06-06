@@ -57,6 +57,7 @@
   }
   // button format
   .add__form__btn{
+    margin-top: 0;
     @extend %btn-template;
     width: 60%;
     border-radius: 30px;
@@ -70,7 +71,6 @@
     font-size: 1.2em;
     word-break: break-all;
     align-self: center;
-    margin-top: 1em;
     white-space: pre-wrap;
     border: $btn_border_size solid $soft-orange;
     background: $darker-blue;
