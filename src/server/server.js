@@ -15,6 +15,7 @@ const weatherCode = {
   800: {url: 'c01d', desc: 'Clear sky'}, 801: {url: 'c02d', desc: 'Few clouds'}, 802: {url: 'c02d', desc: 'Scattered clouds'}, 803: {url: 'c03d', desc: 'Broken clouds'}, 804: {url: 'c04d', desc: 'Overcast clouds'}, 900: {url: 'u00d', desc: 'Unknown Precipitation'}
 }
 
+const mockAPIResponse = require('./mockAPI.js');
 const dotenv = require('dotenv').config();
 const fetch = require('node-fetch');
 // Express to run server and routes
@@ -221,7 +222,7 @@ async function addResponse(req, res){
 
 // test function
 app.get('/test', function (req, res) {
-    res.send('mockAPIResponse');
+    res.send(mockAPIResponse);
 })
 
 // calculate day left from todays date minus trip date
