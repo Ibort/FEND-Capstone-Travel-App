@@ -6,7 +6,12 @@ This project requires you to build out a travel app that, at a minimum, obtains 
 ## Travel App Project Info
 This app runs with node and built with webpack. First you need to add a location and date for your trip, after pushing the save button you can choose the correct location from the dropdown menu. After that you will get some infromations and picture from your trip location. Also if you want you can add some extra infos to the +add fileds.
 
-(build-prod): Running on port 8080
+Used Api-s:
+ - Geonames
+ - Weatherbit
+ - Pixabay
+
+(build-prod): Running on port 8080  
 (build-dev): Running on port 8082
 
 
@@ -21,9 +26,9 @@ This app runs with node and built with webpack. First you need to add a location
   - Location name country and depart date.
   - Remove trip button.
   - Days left countdown.
-  - Common weather data generated from depart day.
-    - icon.
-    - highest and lowest themp with description.
+  - Common weather data generated from depart day(24hours).
+    - icon(most occurence from the daily data(24hours)).
+    - highest and lowest themp with description(calculated average(24hours)).
 - Save new trips
   - location field
   - departe date field
