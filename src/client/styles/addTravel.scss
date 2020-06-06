@@ -11,6 +11,11 @@
   cursor: pointer;
 }
 
+%btn-hover{
+  background: $soft-orange;
+  color: $darker-blue
+}
+
 .add__travel{
   display: flex;
   flex-flow: column;
@@ -61,5 +66,8 @@
   // save trip button
   span{
     @extend %btn-template;
+  }
+  span:hover{
+    @extend %btn-hover;
   }
 }

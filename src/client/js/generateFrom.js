@@ -45,6 +45,7 @@ function genFrom(id, addL, addP, addN, imgURL, imgTag, loc, co, depDate, daysLef
   target.appendChild(content);
   if(daysLeft === 0){
     content.firstChild.innerHTML = '<h1>Trip Expired!</h1>';
+    content.firstChild.innerHTML += '<h2>Double click to remove trip.</h2>';
     content.firstChild.classList.add('trip__expired');
     content.firstChild.addEventListener('dblclick', Client.delTrip)
   }

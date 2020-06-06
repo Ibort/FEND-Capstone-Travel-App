@@ -18,6 +18,11 @@
   background: $dark-blue;
   cursor: pointer;
 }
+
+#addTrip:hover{
+  color: $darker-blue;
+  background: $soft-orange;
+}
 // main conent section -> travels__cont
 .travels__cont{
   // margin-top: 2em;
@@ -32,6 +37,7 @@
 // expired trip style
 .trip__expired{
   display: flex;
+  flex-flow: column;
   position: absolute;
   justify-content: center;
   align-items: center;
@@ -41,9 +47,18 @@
   background-color:rgba(0, 0, 0, 0.6);
 
   h1 {
+    margin-bottom: 0;
     cursor: default;
-    color: red;
+    color: rgba(255, 0, 0, 0.6);
     transform: rotate(-45deg);
+  }
+  h2 {
+    padding-left: 4em;
+    font-size: 0.5em;
+    cursor: default;
+    color: $soft-orange;
+    transform: rotate(-45deg);
+    opacity: 0.6;
   }
 }
 
@@ -61,6 +76,9 @@
     @extend %btn-template;
     width: 60%;
     border-radius: 30px;
+  }
+  .add__form__btn:hover{
+    @extend %btn-hover;
   }
   // textField format
   .add__from__text{
@@ -120,6 +138,9 @@
 
     span{
       @extend %btn-template;
+    }
+    span:hover{
+      @extend %btn-hover;
     }
   }
 
