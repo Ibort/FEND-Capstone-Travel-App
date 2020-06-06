@@ -14,16 +14,41 @@ body {
 
 @media (min-width: 768px) {
   body{
-    width: 500px;
+    width: 1000px;
+    // font-size: 1.3em;
     margin-left: auto;
     margin-right: auto;
+  }
+  .trip__template{
+    display: flex;
+
+    .trip__expired{
+      font-size: 5em;
+    }
+
+    .entry__left{
+      width: 50%;
+      border-right: $btn_border_size solid $yellow;
+    }
+    .entry__right{
+      width: 50%;
+      border-left: $btn_border_size solid $yellow;
+
+      .distance{
+        flex-basis: 20%;
+      }
+
+      .dest__time{
+        flex-basis: 20%;
+      }
+    }
   }
 }
 
 
 @media (min-width: 1400px) {
   body{
-    width: 600px;
+    width: 1200px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -32,7 +57,7 @@ body {
 @media (min-width: 2400px) {
   body{
     font-size: 1.6em;
-    width: 800px;
+    width: 1500px;
     margin-left: auto;
     margin-right: auto;
   }
