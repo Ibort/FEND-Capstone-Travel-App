@@ -19,7 +19,7 @@
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
     "node": "^14.4.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "sass-loader": "^8.0.2",
     "styles-loader": "^2.0.0",
     "webpack": "^4.43.0",
